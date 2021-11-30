@@ -851,5 +851,21 @@ class Article < ApplicationRecord
               words
               world
               youd
+              ve
+              di
+              isn
+              rå
+              fg
+              å
+              ä
+              ps
+              en
+              ne
+              te
+              eu
+              au
+              toi
+              spn
+              psn
               youre).join(" ")
 end
