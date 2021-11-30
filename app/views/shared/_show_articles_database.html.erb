@@ -9,7 +9,7 @@
 
   <div class="articles-compare-container">
     <div class="articles-left" >
-    <h2 class="header" id="myHeader"> <%= source[0].name %></h2>
+    <h2 class="header" id="myHeader"> <%= articles_one.last["source"].capitalize unless (articles_one.empty? || articles_one.nil? ) %></h2>
       <% articles_one.each do |article| %>
         <div class="articles-card-container">
           <div class="articles-card-image">
@@ -32,7 +32,7 @@
 
     </div>
       <div class="articles-right" >
-      <h2><%= source_two[0]["name"] %></h2>
+      <h2><%= articles_two.last["source"].capitalize unless (articles_two.empty? || articles_one.nil? ) %></h2>
       <% articles_two.each do |article| %>
         <div class="articles-card-container">
           <div>
@@ -43,7 +43,7 @@
             <div class="article-card-info">
               <h5 class="info-title"><%= article["title"] %> </h5>
               <p class="info-description"><%= article["description"] %> </p>
-              <p class="author">Source: <%= source_two[0]["name"] %> </p>
+              <p class="author">Source: <%= articles_two.last["source"].capitalize unless (articles_two.empty? || articles_one.nil? ) %> </p>
             </div>
           </div>
           <div class="articles-card-image">
