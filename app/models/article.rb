@@ -861,6 +861,7 @@ class Article < ApplicationRecord
               ps
               en
               ne
+              ni
               te
               eu
               au

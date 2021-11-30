@@ -10,5 +10,3 @@ const initWordCloud = () => {
 }
 
 export { initWordCloud };
-
-// '#000000 #404040 #7f7f7f #bfbfbf'

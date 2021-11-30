@@ -91,21 +91,23 @@ class ComparisonsController < ApplicationController
     else
       build_url(@comparison)
       payload(@url_one)
-      @articles_one = JSON.parse(@response.body)["data"].first(5)
+      @articles_one = JSON.parse(@response.body)["data"].first(10)
       @comparison.update(articles_one: JSON.parse(@response.body)["data"].to_json)
       @comparison.update(selected_articles_one: @articles_one.to_json)
 
       payload(@url_two)
-      @articles_two = JSON.parse(@response.body)["data"].first(5)
+      @articles_two = JSON.parse(@response.body)["data"].first(10)
       @comparison.update(articles_two: JSON.parse(@response.body)["data"].to_json)
       @comparison.update(selected_articles_two: @articles_two.to_json)
     end
 
     @source = Source.where(source_keyword: @articles_one[0]["source"])
     avg_textmood(@articles_one)
+    @words_one = word_counter(@articles_one)
 
     @source_two = Source.where(source_keyword: @articles_two[0]["source"])
     avg_textmood(@articles_two)
+    @words_two = word_counter(@articles_two)
   end
 
   def avg_textmood(articles)

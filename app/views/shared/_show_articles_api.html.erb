@@ -7,6 +7,9 @@
   <div class="articles-compare-container">
     <div class=articles-left>
       <h2 class="header" id="myHeader"> <%= articles_one.last["source"].capitalize unless (articles_one.empty? || articles_one.nil? ) %> </h2>
+      <div class="articles-card-container">
+        <div id="my_canvas" data-words="<%= @words_two %> "style='height: 268px; width: 733px; border-radius: 8px;'></div>
+      </div>
       <% @articles_one.each do |article| %>
         <% if article.nil? %>
           <script>alert("No more articles available from this publisher.")</script>
@@ -39,15 +42,18 @@
           </div>
         <% end %>
       <% end %>
+      <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
+        <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span>Add article</span></i></span>
+      <% end %>
     </div>
-    <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
-      <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span>Add article</span></i></span>
-    <% end %>
 
     <div class="articles-right">
       <h2 class="header" id="myHeader"> <%= articles_two.last["source"].capitalize  unless articles_one.empty? %> </h2>
+      <div class="articles-card-container">
+        <div id="my_canvas" data-words="<%= @words_two %>  "style='height: 268px; width: 268px; border-radius: 8px;'></div>
+      </div>
       <% @articles_two.each do |article| %>
-         <% if article.nil? %>
+        <% if article.nil? %>
           <script>alert("No more articles available from this publisher.")</script>
         <% else %>
           <div class="articles-card-container">
@@ -67,13 +73,13 @@
                 <p class="author">Source: <%= article["source"] %> </p>
                 <p class="sentiment">Sentiment: <%= article["sentiment_title_string"] %> </p>
               </div>
-              <div class="articles-card-image">
-                <% if article["image"].nil? %>
-                  <%= image_tag "no-image.png", alt: "image not found" %>
-                <% else %>
-                  <img src=<%= article["image"]%> alt="article image">
-                <% end %>
-              </div>
+            </div>
+            <div class="articles-card-image">
+              <% if article["image"].nil? %>
+                <%= image_tag "no-image.png", alt: "image not found" %>
+              <% else %>
+                <img src=<%= article["image"]%> alt="article image">
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -82,7 +88,8 @@
         <span><i class="fas fa-plus-circle"> <span>Add article</span></i></span>
       <% end %>
     </div>
+  </div>
+</div>
   <div class="save">
     <%= link_to 'Save', comparison_create_entries_path(comparison), method: :post, class: "button-white", id: "fixedbutton" %>
   </div>
-</div>
