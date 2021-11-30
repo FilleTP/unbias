@@ -26,7 +26,7 @@ require("channels")
 import "bootstrap";
 import { initMapbox } from '../plugins/init_mapbox';
 import { initFlatpickr } from "../plugins/init_flatpickr";
-import { initWordCloud } from "../plugins/init_word_cloud";
+// import { initWordCloud } from "../plugins/init_word_cloud";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -36,7 +36,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initMapbox();
   initFlatpickr();
-  initWordCloud();
+  // initWordCloud();
 });
 
 

@@ -1,10 +1,9 @@
 import mapboxgl from '!mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { initWordCloud } from './init_word_cloud';
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
-  var el = document.getElementById("t");
-  el.addEventListener("click", function () { modifyText("four") }, false);
 
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -33,6 +32,16 @@ const addMarkersToMap = (map, markers) => {
 
   markers.forEach((marker) => {
     const popup = new mapboxgl.Popup().setHTML(marker.info_window);
+
+    // add event listener for the popup
+    popup.on('open', () => {
+      console.log('popup was opened');
+      const popupElement = popup.getElement();
+      const canvas = popupElement.querySelector('.word-cloud-canvas')
+      console.log(canvas);
+      initWordCloud(canvas)
+    });
+
     const element = document.createElement('div');
     element.classList.add("markerStyling");
     element.className = 'marker';

@@ -10,4 +10,4 @@
 <%@words %>
     <%= @tally[source.name].to_i + @tally[source.source_keyword[0,3]].to_i %>
 
-<div id="my_canvas" data-words="<%= words %>" style='height: 600px; width: 960px; font-size: 10px; z-index: 10'></div>
+<div id="my_canvas" class='word-cloud-canvas' data-words="<%= words %>" style='height: 600px; width: 960px; font-size: 10px; z-index: 10'></div>
