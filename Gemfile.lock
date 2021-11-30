@@ -137,9 +137,6 @@ GEM
     loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    magic_cloud (0.0.4)
-      rmagick
-      slop (~> 3.0)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
@@ -219,7 +216,6 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
-    rmagick (4.2.3)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
@@ -239,7 +235,6 @@ GEM
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
-    slop (3.6.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -306,13 +301,11 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   json
   listen (~> 3.2)
-  magic_cloud
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails
   puma (~> 4.1)
   rails (~> 6.0.4, >= 6.0.4.1)
-  rmagick
   sass-rails (>= 6)
   selenium-webdriver
   simple_form
