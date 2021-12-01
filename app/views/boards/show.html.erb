@@ -34,7 +34,7 @@
           <div class="board-card-discussion-info col-lg-6 d-flex justify-content-between">
             <span></span>
             <span></span>
-            <p>Share</p>
+            <i class="fas fa-share-alt"></i>
           </div>
       </div>
       <div class="row">
@@ -43,12 +43,15 @@
       </div>
     </div>
   </div>
+  <%= cl_image_tag(Source.find(comparison.publisher_one).img_cloudinary,
+      width: 70, height: 70, crop: :fill) %>
+  <%= cl_image_tag(Source.find(comparison.publisher_two).img_cloudinary,
+      width: 70, height: 70, crop: :fill) %>
 <% end %>
 </div>
 
-  <div class="col-sm-12 col-lg-6" style="background-color: #191A1A; min-height: 100vh;">
-  <h1 class="board-stats-text" style="margin: 50px 0px 0px 30px;">You have:&nbsp<%= @comparisons.count %>&nbspcomparisons</h1>
-  </div>
+
+
 
 
 </div>

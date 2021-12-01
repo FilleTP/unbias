@@ -145,7 +145,8 @@ Source.create!(name: "The New York Times",
 Source.create!(name: "CNN",
                source_keyword: "cnn",
                address: "Atlanta, USA",
-               img: "cnn-logo.png")
+               img: "cnn-logo.png",
+               img_cloudinary: "cnn-logo_cswxba.png")
 
 Source.create!(name: "BBC",
                source_keyword: "bbc",
