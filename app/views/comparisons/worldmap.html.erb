@@ -2,12 +2,9 @@
   <div class="maxi-search-bar-home maxi-choose-bias-form absolute-form">
   <% @sources = Source.where(source_keyword: @articles.map { |article| article["source"] })
                 .or(Source.where(name: @articles.map { |article| article["source"] }))
-                # CNN SOURCES
-                .or(Source.where(name: @articles_cnn.map { |article| article["source"][0,3] }))
-                .or(Source.where(source_keyword: @articles_cnn.map { |article| article["source"][0,3] }))
-                # BBC SOURCES
-                .or(Source.where(name: @articles_bbc.map { |article| article["source"][0,3] }))
-                .or(Source.where(source_keyword: @articles_bbc.map { |article| article["source"][0,3] })) %>
+                .or(Source.where(name: @articles.map { |article| article["source"].start_with?("BBC")}))
+                .or(Source.where(name: @articles.map { |article| article["source"].start_with?("CNN")}))
+                .or(Source.where(name: @articles.map { |article| article["source"].start_with?("FOX")})) %>
     <%= simple_form_for @comparison do |f| %>
       <%= f.input :publisher_one, collection: @sources, selected: @sources.first.id, label: false %>
       <%= f.input :publisher_two, collection: @sources, selected: @sources.last.id, label: false %>
