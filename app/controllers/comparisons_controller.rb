@@ -50,7 +50,10 @@ class ComparisonsController < ApplicationController
     # @tally[source['source_keyword']].to_i.times do
       @markers = @sources.geocoded.map do |source|
         filtered_articles = articles.select do |article|
-          (article["source"] == source[:name]) || (article["source"] == source[:source_keyword])
+          ((article["source"] == source[:name]) || (article["source"] == source[:source_keyword])) ||
+            ((article["source"].start_with?("BBC") == source[:name]) ||  (article["source"].start_with?("BBC") == source[:source_keyword])) ||
+            ((article["source"].start_with?("CNN") == source[:name]) ||  (article["source"].start_with?("CNN") == source[:source_keyword])) ||
+            ((article["source"].start_with?("FOX") == source[:name]) || (article["source"].start_with?("FOX") == source[:source_keyword]))
         end
 
         words = word_counter(filtered_articles)
