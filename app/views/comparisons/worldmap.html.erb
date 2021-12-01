@@ -1,13 +1,9 @@
 <% content_for :nav, render('shared/form_navbar') %>
-  <div class="maxi-search-bar-home maxi-choose-bias-form absolute-form">
-  <% @sources = Source.where(source_keyword: @articles.map { |article| article["source"] })
-                .or(Source.where(name: @articles.map { |article| article["source"] }))
-                .or(Source.where(name: @articles.map { |article| article["source"].start_with?("BBC")}))
-                .or(Source.where(name: @articles.map { |article| article["source"].start_with?("CNN")}))
-                .or(Source.where(name: @articles.map { |article| article["source"].start_with?("FOX")})) %>
+  <div class="maxi-search-bar-home maxi-choose-bias-form absolute-form javi">
+
     <%= simple_form_for @comparison do |f| %>
-      <%= f.input :publisher_one, collection: @sources, selected: @sources.first.id, label: false %>
-      <%= f.input :publisher_two, collection: @sources, selected: @sources.last.id, label: false %>
+      <%= f.input :publisher_one, collection: @sources, :include_blank => "", selected: 1, label: false %>
+      <%= f.input :publisher_two, collection: @sources, :include_blank => "", selected: 1, label: false %>
       <%= f.button :submit, 'Show', class: "button-white"%>
     <% end %>
   </div>
@@ -29,10 +25,11 @@
         <p>sentiment description: <span style="color: white"><%= article["sentiment_description_string"] %></span> </p>
         <p>sentiment description: <span style="color: white"><%= article["sentiment_description_score"]%></span>
         <p>word count description: <span style="color: white"><%= article["tokenized"]%></span>
-        <%# <p>words tokenized: <span style="color: white"><%= article["words_tokenized"]%></span>
+        <p>words tokenized: <span style="color: white"><%= article["words_tokenized"]%></span>
         <p><%=article["published_at"] %></span>
 
         <div id="my_canvas" data-words="<%= @words %> "style='height: 600px; width: 960px; border-radius: 8px;'></div>
 
     <% end %>
+
 </div>

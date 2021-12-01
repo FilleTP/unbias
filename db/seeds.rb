@@ -152,9 +152,9 @@ Source.create!(name: "BBC",
                address: "London, United Kingdom",
                img: "bbc-logo.png")
 
-Source.create!(name: "FOX news",
+Source.create!(name: "FOX",
                source_keyword: "foxnews",
-               address: "New Jersey, USA",
+               address: "New Jersey",
                img: "fox-logo.png")
 
 # STILL NOT WORKING:
