@@ -85,10 +85,9 @@ class ComparisonsController < ApplicationController
   def show
     @comparison = Comparison.find(params[:id])
 
-    if @comparison.selected_articles_one
+    if @comparison.selected_articles_one && @comparison.selected_articles_two
       @articles_one = JSON.parse(@comparison.selected_articles_one)
       @articles_two = JSON.parse(@comparison.selected_articles_two)
-
     else
       build_url(@comparison)
       payload(@url_one)
@@ -102,10 +101,10 @@ class ComparisonsController < ApplicationController
       @comparison.update(selected_articles_two: @articles_two.to_json)
     end
 
-    @source = Source.where(name: @articles_one[0]["source"])
+    @source = Source.where(source_keyword: @articles_one[0]["source"])
     avg_textmood(@articles_one)
 
-    @source_two = Source.where(name: @articles_two[0]["source"])
+    @source_two = Source.where(source_keyword: @articles_two[0]["source"])
     avg_textmood(@articles_two)
   end
 
@@ -170,9 +169,10 @@ class ComparisonsController < ApplicationController
   end
 
   def word_counter(articles)
+    stop_words = Article::STOPWORDS
     tokenized = ""
     articles.each do |article|
-      tokenized += WordsCounted::Tokeniser.new(article["description"]).tokenise(exclude: "the at of and in for on - has an due to a as his with").join(" ")
+      tokenized += WordsCounted::Tokeniser.new(article["description"]).tokenise(exclude: stop_words).join(" ")
     end
       @words = WordsCounted.count(tokenized).token_frequency
   end

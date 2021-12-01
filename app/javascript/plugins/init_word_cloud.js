@@ -1,9 +1,12 @@
 import WordCloud from 'wordcloud'
 
+
 const initWordCloud = (canvas) => {
   const list = JSON.parse(canvas.dataset.words)
   console.log(list)
-  WordCloud(canvas, { list: list, fontWeight: '600', weightFactor: '20', color: 'random-dark', rotationSteps: '2', fontSize: '5'});
+  WordCloud(canvas, { list: list, fontFamily: 'Montserrat, monospace', fontWeight: '600', weightFactor: '7', color: 'black', rotationSteps: '2' });
 }
 
 export { initWordCloud };
+
+// '#000000 #404040 #7f7f7f #bfbfbf'

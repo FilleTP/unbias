@@ -3,77 +3,79 @@
 <% comparison = locals[:comparison]  %>
 
 <div class="comparison-container">
-<h1>News comparison</h1>
 
+  <h1>News comparison</h1>
 
   <div class="articles-compare-container">
     <div class=articles-left>
-   <h2 class="header" id="myHeader"> <%= articles_one.last["source"].capitalize unless (articles_one.empty? || articles_one.nil? ) %> </h2>
+      <h2 class="header" id="myHeader"> <%= articles_one.last["source"].capitalize unless (articles_one.empty? || articles_one.nil? ) %> </h2>
       <% @articles_one.each do |article| %>
         <% if article.nil? %>
           <script>alert("No more articles available from this publisher.")</script>
         <% else %>
-        <div class="articles-card-container">
-          <div class="articles-card-image">
-            <% if article["image"].nil? %>
-              <%= image_tag "no-image.png", alt: "image not found" %>
-            <% else %>
-              <img src=<%= article["image"]%> alt="article image">
-            <% end %>
-           </div>
-          <div class="article-card-text">
-            <div class="articles-card-date-cat">
-              <p><%= article["category"].upcase %> </p>
-              <%= article["published_at"].first(10) %>
-              <%= link_to comparison_remove_article_one_path(@comparison, article), class: "maxi-remove-article-button" do %>
-               <i class="far fa-window-close"></i>
+          <div class="articles-card-container">
+            <div class="articles-card-image">
+              <% if article["image"].nil? %>
+                <%= image_tag "no-image.png", alt: "image not found" %>
+              <% else %>
+                <img src=<%= article["image"]%> alt="article image">
               <% end %>
             </div>
-            <div class="article-card-info">
-              <h5 class="info-title"><%= article["title"] %> </h5>
-              <p class="info-description"><%= article["description"] %> </p>
+            <div class="article-card-text">
+              <div class="articles-card-date-cat">
+                <p><%= article["category"].upcase %> </p>
+                <%= article["published_at"].first(10) %>
+                <%= link_to comparison_remove_article_one_path(@comparison, article), class: "maxi-remove-article-button" do %>
+                <i class="far fa-window-close"></i>
+                <% end %>
+              </div>
+              <div class="article-card-info">
+                <h5 class="info-title"><%= article["title"] %> </h5>
+                <p class="info-description"><%= article["description"] %> </p>
+              </div>
+              <div class="article-author-sentiment">
+                <p class="author">Source: <%= article["source"] %> </p>
+                <p class="sentiment">Sentiment: <%= article["sentiment_title_string"] %> </p>
+              </div>
             </div>
-            <div class="article-author-sentiment">
-              <p class="author">Source: <%= article["source"] %> </p>
-              <p class="sentiment">Sentiment: <%= article["sentiment_title_string"] %> </p>
-            </div>
-          <% end %>
-         </div>
+          </div>
+        <% end %>
       <% end %>
-      <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
-        <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span>Add article</span></i></span>
-      <% end %>
-
     </div>
-      <div class="articles-right">
+    <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
+      <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span>Add article</span></i></span>
+    <% end %>
+
+    <div class="articles-right">
       <h2 class="header" id="myHeader"> <%= articles_two.last["source"].capitalize  unless articles_one.empty? %> </h2>
       <% @articles_two.each do |article| %>
          <% if article.nil? %>
           <script>alert("No more articles available from this publisher.")</script>
         <% else %>
-        <div class="articles-card-container">
-          <div class="article-card-text">
-            <div class="articles-card-date-cat">
-              <p><%= article["category"].upcase %> </p>
-              <%= article["published_at"].first(10) %>
-              <%= link_to comparison_remove_article_two_path(@comparison, article), class: "maxi-remove-article-button" do %>
-               <i class="far fa-window-close"></i>
-              <% end %>
-            </div>
-            <div class="article-card-info">
-              <h5 class="info-title"><%= article["title"] %> </h5>
-              <p class="info-description"><%= article["description"] %> </p>
-            <div class="article-author-sentiment">
-              <p class="author">Source: <%= article["source"] %> </p>
-              <p class="sentiment">Sentiment: <%= article["sentiment_title_string"] %> </p>
-            </div>
-           </div>
-            <div class="articles-card-image">
-              <% if article["image"].nil? %>
-              <%= image_tag "no-image.png", alt: "image not found" %>
-            <% else %>
-              <img src=<%= article["image"]%> alt="article image">
-            <% end %>
+          <div class="articles-card-container">
+            <div class="article-card-text">
+              <div class="articles-card-date-cat">
+                <p><%= article["category"].upcase %> </p>
+                <%= article["published_at"].first(10) %>
+                <%= link_to comparison_remove_article_two_path(@comparison, article), class: "maxi-remove-article-button" do %>
+                <i class="far fa-window-close"></i>
+                <% end %>
+              </div>
+              <div class="article-card-info">
+                <h5 class="info-title"><%= article["title"] %> </h5>
+                <p class="info-description"><%= article["description"] %> </p>
+              </div>
+              <div class="article-author-sentiment">
+                <p class="author">Source: <%= article["source"] %> </p>
+                <p class="sentiment">Sentiment: <%= article["sentiment_title_string"] %> </p>
+              </div>
+              <div class="articles-card-image">
+                <% if article["image"].nil? %>
+                  <%= image_tag "no-image.png", alt: "image not found" %>
+                <% else %>
+                  <img src=<%= article["image"]%> alt="article image">
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>
@@ -82,8 +84,6 @@
         <span><i class="fas fa-plus-circle"> <span>Add article</span></i></span>
       <% end %>
     </div>
-  </div>
-
   <div class="save">
     <%= link_to 'Save', comparison_create_entries_path(comparison), method: :post, class: "button-white", id: "fixedbutton" %>
   </div>
