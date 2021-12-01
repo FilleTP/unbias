@@ -16,7 +16,7 @@
 }
 
 .mapboxgl-popup {
-  width: 500px;
+  min-width: 800px!important;
   max-height: 400px;
 }
 
@@ -24,4 +24,10 @@
   svg g {
     fill: $main !important;
   }
+}
+
+.mapboxgl-popup-content {
+  width: 800px!important;
+  max-height: 400px;
+  background-color: red;
 }
