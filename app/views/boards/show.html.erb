@@ -58,9 +58,18 @@
 
   <div class="row">
         <% @comparisons.each do |comparison| %>
-
-        <div id="my_canvas" data-words="<%= @words %> "style='height: 600px; width: 960px; border-radius: 8px;'></div>
-
+        <div class="sentiment-stats d-flex justify-content-around">
+          <p class="sentiment-comparison-one" style="color: white;">Sentiment: <%= comparison.sentiment_one %></p>
+          <p class="sentiment-comparison-two" style="color: white;">Sentiment: <%= comparison.sentiment_two %></p>
+        </div>
+    <% end %>
+  </div>
+  <div class="row">
+        <% @comparisons.each do |comparison| %>
+        <div class="sentiment-stats d-flex justify-content-around">
+          <p class="sentiment-comparison-one" style="color: white;">Sentiment: <%= comparison.articles_one %></p>
+          <p class="sentiment-comparison-two" style="color: white;">Sentiment: <%= comparison.sentiment_two %></p>
+        </div>
     <% end %>
   </div>
 </div>
