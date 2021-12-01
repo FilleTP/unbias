@@ -53,23 +53,24 @@ class ComparisonsController < ApplicationController
     # @tally[source['source_keyword']].to_i.times do
       @markers = @sources.geocoded.map do |source|
         filtered_articles = articles.select do |article|
-          ((article["source"] == source[:name]) || (article["source"] == source[:source_keyword])) ||
+        ((article["source"] == source[:name]) || (article["source"] == source[:source_keyword])) ||
             ((article["source"].start_with?("BBC") == source[:name]) ||  (article["source"].start_with?("BBC") == source[:source_keyword])) ||
             ((article["source"].start_with?("CNN") == source[:name]) ||  (article["source"].start_with?("CNN") == source[:source_keyword])) ||
             ((article["source"].start_with?("FOX") == source[:name]) || (article["source"].start_with?("FOX") == source[:source_keyword]))
         end
 
-        # filtered_textmood = @textmood.find do |element|
-        #   source_keyword = source[:source_keyword]
-        #   element[source_keyword]
-        # end
+        filtered_textmood = @textmood.find do |element|
+          element["#{source[:source_keyword]} "] || element["#{source[:name]} "]
+        end
+
+        textmood = filtered_textmood.values[0][:average_description]
 
         words = word_counter(filtered_articles)
 
           {
             lat: source.latitude,
             lng: source.longitude,
-            info_window: render_to_string(partial: "info_window", locals: { source: source, words: words }),
+            info_window: render_to_string(partial: "info_window", locals: { source: source, words: words, textmood: textmood }),
             image_url: helpers.asset_url(source.img)
             # info_window: render_to_string(partial: "info_window")
           }
@@ -162,25 +163,25 @@ class ComparisonsController < ApplicationController
   def stringify_sentiment(number)
     case number
     when 75..100
-      "Overwhelmingly positive"
+      "Extremely positive"
     when 50..74
       "Very positive"
     when 25..49
       "Positive"
     when 10..24
-      "Somewhat positive"
+      "Slightly positive"
     when -10..9
       "Neutral"
     when -25..-11
-      "Somewhat negative"
+      "Slightly negative"
     when -50..-26
       "Negative"
     when -75..-51
       "Very negative"
     when -100..-76
-      "Overwhelmingly negative"
+      "Extremely negative"
     else
-      "Unknown"
+      "Neutral"
     end
   end
 
