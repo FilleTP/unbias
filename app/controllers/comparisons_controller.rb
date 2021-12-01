@@ -33,29 +33,38 @@ class ComparisonsController < ApplicationController
     payload(@url_bbc_worldmap)
     @articles_bbc = JSON.parse(@response.body)["data"]
 
+    payload(@url_fox_worldmap)
+    @articles_fox = JSON.parse(@response.body)["data"]
+
     payload(@url_worldmap)
     @articles = JSON.parse(@response.body)["data"]
+
+    @articles += @articles_cnn + @articles_bbc + @articles_fox
+
     avg_textmood(@articles)
     word_counter(@articles)
-    generate_markers(@articles, @articles_cnn, @articles_bbc)
+    generate_markers(@articles)
   end
 
-  def tally(articles)
-    articles.map { |article| article["source"] }.tally
-  end
 
-  def generate_markers(articles, articles_cnn, articles_bbc)
-    @sources = Source.where(source_keyword: articles.map { |article| article["source"] })
-              .or(Source.where(name: articles.map { |article| article["source"] }))
-              .or(Source.where(name: "BBC"))
-              .or(Source.where(name: "CNN"))
+  def generate_markers(articles)
+    @sources = generate_sources(articles)
     @tally = tally(articles)
     # @tally[source['source_keyword']].to_i.times do
       @markers = @sources.geocoded.map do |source|
+        filtered_articles = articles.select do |article|
+          ((article["source"] == source[:name]) || (article["source"] == source[:source_keyword])) ||
+            ((article["source"].start_with?("BBC") == source[:name]) ||  (article["source"].start_with?("BBC") == source[:source_keyword])) ||
+            ((article["source"].start_with?("CNN") == source[:name]) ||  (article["source"].start_with?("CNN") == source[:source_keyword])) ||
+            ((article["source"].start_with?("FOX") == source[:name]) || (article["source"].start_with?("FOX") == source[:source_keyword]))
+        end
+
+        words = word_counter(filtered_articles)
+
           {
             lat: source.latitude,
             lng: source.longitude,
-            info_window: render_to_string(partial: "info_window", locals: { source: source, articles: articles, words: @words }),
+            info_window: render_to_string(partial: "info_window", locals: { source: source, words: words }),
             image_url: helpers.asset_url(source.img)
             # info_window: render_to_string(partial: "info_window")
           }
@@ -112,8 +121,7 @@ class ComparisonsController < ApplicationController
 
   def avg_textmood(articles)
     tm = TextMood.new(language: "en", normalize_score: true)
-    @source = Source.where(source_keyword: articles.map { |article| article["source"] })
-         .or(Source.where(name: articles.map { |article| article["source"] }))
+    @sources = generate_sources(articles)
     @tally = articles.map { |article| article["source"] }.tally
 
     articles.each do |article|
@@ -179,10 +187,18 @@ class ComparisonsController < ApplicationController
       @words = WordsCounted.count(tokenized).token_frequency
   end
 
+  def generate_sources(articles)
+    @sources = Source.where(source_keyword: articles.map { |article| article["source"] })
+          .or(Source.where(name: articles.map { |article| article["source"] }))
+          .or(Source.where(name: articles.map { |article| article["source"].start_with?("BBC")}))
+          .or(Source.where(name: articles.map { |article| article["source"].start_with?("CNN")}))
+          .or(Source.where(name: articles.map { |article| article["source"].start_with?("FOX")}))
+  end
 
   private
 
-  def filter_sources
+  def tally(articles)
+    articles.map { |article| article["source"] }.tally
   end
 
   def strong_params
@@ -205,9 +221,11 @@ class ComparisonsController < ApplicationController
     Source.all.each do |source|
       sources << source['source_keyword']
     end
-    @url_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=#{sources.join(',')},-cnn,-bbc&limit=100"
-    @url_cnn_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=cnn&limit=15"
-    @url_bbc_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=bbc&limit=15"
+    @url_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=#{sources.join(',')},-cnn,-bbc,-foxnews&limit=100"
+    @url_cnn_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=cnn&limit=50"
+    @url_bbc_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=bbc&limit=50"
+    @url_fox_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=foxnews&limit=50"
+
 
     @url_one = "#{BASE_URL}#{keyword}#{date}#{publisher_one}#{country_one}"
     @url_two = "#{BASE_URL}#{keyword}#{date}#{publisher_two}#{country_two}"

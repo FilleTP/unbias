@@ -1,7 +1,5 @@
 
-
 <div class="row">
-
   <div class="col-sm-12 col-lg-5" id="board-card-container">
   <h1 id="headline-board-comparisons">Comparisons</h1>
   <% @comparisons.each do |comparison|%>
@@ -43,15 +41,20 @@
       </div>
     </div>
   </div>
-  <%= cl_image_tag(Source.find(comparison.publisher_one).img_cloudinary,
-      width: 70, height: 70, crop: :fill) %>
-  <%= cl_image_tag(Source.find(comparison.publisher_two).img_cloudinary,
-      width: 70, height: 70, crop: :fill) %>
+
 <% end %>
 </div>
+<div class="col-sm-12 col-lg-7" style="background-color: black; min-height: 100vh;">
+  <div class="row">
+  <div class="logos-comparison col-lg-8 d-flex justify-content-around mgl-300px">
+    <% @comparisons.each do |comparison|%>
+    <%= cl_image_tag(Source.find(comparison.publisher_one).img_cloudinary,
+      width: 70, height: 70, crop: :fill) %>
+    <%= cl_image_tag(Source.find(comparison.publisher_two).img_cloudinary,
+      width: 70, height: 70, crop: :fill) %>
+    <% end %>
+  </div>
 
-
-
-
+</div>
 
 </div>
