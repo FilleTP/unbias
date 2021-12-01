@@ -14,7 +14,7 @@
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
-    <% @articles.each do |article| %>
+   <% @articles.each do |article| %>
       <a href=<%= article["url"]%>>
         <p>Author <span style="color: white"><%= article["author"] %></span> </p>
         <p>title <span style="color: white"><%= article["title"] %></span> </p>
@@ -25,7 +25,7 @@
         <p>sentiment description: <span style="color: white"><%= article["sentiment_description_string"] %></span> </p>
         <p>sentiment description: <span style="color: white"><%= article["sentiment_description_score"]%></span>
         <p>word count description: <span style="color: white"><%= article["tokenized"]%></span>
-        <p>words tokenized: <span style="color: white"><%= article["words_tokenized"]%></span>
+        <%# <p>words tokenized: <span style="color: white"><%= article["words_tokenized"]%></span>
         <p><%=article["published_at"] %></span>
 
         <div id="my_canvas" data-words="<%= @words %> "style='height: 600px; width: 960px; border-radius: 8px;'></div>
