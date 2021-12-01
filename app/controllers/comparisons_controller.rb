@@ -40,9 +40,6 @@ class ComparisonsController < ApplicationController
     generate_markers(@articles, @articles_cnn, @articles_bbc)
   end
 
-  def tally(articles)
-    articles.map { |article| article["source"] }.tally
-  end
 
   def generate_markers(articles, articles_cnn, articles_bbc)
     @sources = Source.where(source_keyword: articles.map { |article| article["source"] })
@@ -52,10 +49,16 @@ class ComparisonsController < ApplicationController
     @tally = tally(articles)
     # @tally[source['source_keyword']].to_i.times do
       @markers = @sources.geocoded.map do |source|
+        filtered_articles = articles.select do |article|
+          (article["source"] == source[:name]) || (article["source"] == source[:source_keyword])
+        end
+
+        words = word_counter(filtered_articles)
+
           {
             lat: source.latitude,
             lng: source.longitude,
-            info_window: render_to_string(partial: "info_window", locals: { source: source, articles: articles, words: @words }),
+            info_window: render_to_string(partial: "info_window", locals: { source: source, words: words }),
             image_url: helpers.asset_url(source.img)
             # info_window: render_to_string(partial: "info_window")
           }
@@ -182,7 +185,8 @@ class ComparisonsController < ApplicationController
 
   private
 
-  def filter_sources
+  def tally(articles)
+    articles.map { |article| article["source"] }.tally
   end
 
   def strong_params
