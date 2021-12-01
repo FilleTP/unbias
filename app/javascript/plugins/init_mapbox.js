@@ -48,9 +48,9 @@ const addMarkersToMap = (map, markers) => {
       // const pubTwo =
 
       // add button
-      const btnAdd = popupElement.querySelector('.input-map-add')
+      const btnAdd = popupElement.getElementById('popup-header');
       // input publisher one
-      const optOne = document.getElementById('comparison_publisher_one').getElementsByTagName('option')
+      const optOne = document.getElementById('comparison_publisher_one').getElementsByTagName('option');
       console.log(Object.entries(optOne), optOne[1]);
       const optTwo = document.getElementById('comparison_publisher_two').getElementsByTagName('option')
 

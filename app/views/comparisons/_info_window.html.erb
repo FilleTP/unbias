@@ -1,46 +1,9 @@
+<div class="popup-container">
+  <div class="popup-content" style="text-align: center;">
+    <h3 id="popup-header"><%= source.name.capitalize %></h3>
+  </div>
+  <div id="my_canvas" class='word-cloud-canvas' data-words="<%= words %>" style='height: 400px; width: 400px; font-size: 10px; z-index: 10'></div>
 
-<h3 class="source-name-hidden" style=""><%= source.name.capitalize %></h3>
-<%# <%= source.name.capitalize %>
-
-<%# Faraday.get("http://api.mediastack.com/v1/news?access_key=bc6099508dd0e4321fbe33e136b8cd96&languages=en?sources=#{source}") %>
-<%#
-    <%= @tally[source.name].to_i + @tally[source.source_keyword] %>
-
-
-<%# <%@words %> %>
-    <%# <%= @tally[source.name].to_i + @tally[source.source_keyword[0,3]].to_i %> %>
-
-<%# <div id="my_canvas" class='word-cloud-canvas' data-words="<%= words " style='height: 600px; width: 960px; font-size: 10px; z-index: 10'></div> %> %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 <%= link_to 'Add to comparison', "#", class: "input-map-add" %>
