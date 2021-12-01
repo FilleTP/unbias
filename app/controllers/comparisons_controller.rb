@@ -40,14 +40,11 @@ class ComparisonsController < ApplicationController
 
     @articles += @articles_fox +@articles_cnn + @articles_bbc
 
-    avg_textmood(@articles)
+    @textmood = avg_textmood(@articles)
     word_counter(@articles)
     generate_markers(@articles)
   end
 
-  def tally(articles)
-    articles.map { |article| article["source"] }.tally
-  end
 
   def generate_markers(articles)
     @sources = Source.where(name: articles.map { |article| article["source"]})
@@ -56,16 +53,29 @@ class ComparisonsController < ApplicationController
 
     @tally = tally(articles)
     # @tally[source['source_keyword']].to_i.times do
-    @markers = @sources.geocoded.map do |source|
-      {
-        lat: source.latitude,
-        lng: source.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { source: source, articles: articles, words: @words }),
-        image_url: helpers.asset_url(source.img)
-        # info_window: render_to_string(partial: "info_window")
-      }
-    end
+      @markers = @sources.geocoded.map do |source|
+        filtered_articles = articles.select do |article|
+          ((article["source"] == source[:name]) || (article["source"] == source[:source_keyword])) ||
+            ((article["source"].start_with?("BBC") == source[:name]) ||  (article["source"].start_with?("BBC") == source[:source_keyword])) ||
+            ((article["source"].start_with?("CNN") == source[:name]) ||  (article["source"].start_with?("CNN") == source[:source_keyword])) ||
+            ((article["source"].start_with?("FOX") == source[:name]) || (article["source"].start_with?("FOX") == source[:source_keyword]))
+        end
 
+        # filtered_textmood = @textmood.find do |element|
+        #   source_keyword = source[:source_keyword]
+        #   element[source_keyword]
+        # end
+
+        words = word_counter(filtered_articles)
+
+          {
+            lat: source.latitude,
+            lng: source.longitude,
+            info_window: render_to_string(partial: "info_window", locals: { source: source, words: words }),
+            image_url: helpers.asset_url(source.img)
+            # info_window: render_to_string(partial: "info_window")
+          }
+      end
   end
 
   def update
@@ -97,21 +107,23 @@ class ComparisonsController < ApplicationController
     else
       build_url(@comparison)
       payload(@url_one)
-      @articles_one = JSON.parse(@response.body)["data"].first(5)
+      @articles_one = JSON.parse(@response.body)["data"].first(10)
       @comparison.update(articles_one: JSON.parse(@response.body)["data"].to_json)
       @comparison.update(selected_articles_one: @articles_one.to_json)
 
       payload(@url_two)
-      @articles_two = JSON.parse(@response.body)["data"].first(5)
+      @articles_two = JSON.parse(@response.body)["data"].first(10)
       @comparison.update(articles_two: JSON.parse(@response.body)["data"].to_json)
       @comparison.update(selected_articles_two: @articles_two.to_json)
     end
 
     @source = Source.where(source_keyword: @articles_one[0]["source"])
     avg_textmood(@articles_one)
+    @words_one = word_counter(@articles_one)
 
     @source_two = Source.where(source_keyword: @articles_two[0]["source"])
     avg_textmood(@articles_two)
+    @words_two = word_counter(@articles_two)
   end
 
   def avg_textmood(articles)
@@ -148,6 +160,7 @@ class ComparisonsController < ApplicationController
 
       @averages << { "#{key} " => { average_title: @average_title, average_description: @average_description } }
     end
+    return @averages
   end
 
   def stringify_sentiment(number)
@@ -194,7 +207,8 @@ class ComparisonsController < ApplicationController
 
   private
 
-  def filter_sources
+  def tally(articles)
+    articles.map { |article| article["source"] }.tally
   end
 
   def strong_params

@@ -1,7 +1,5 @@
 
-
 <div class="row">
-
   <div class="col-sm-12 col-lg-5" id="board-card-container">
   <h1 id="headline-board-comparisons">Comparisons</h1>
   <% @comparisons.each do |comparison|%>
@@ -34,7 +32,7 @@
           <div class="board-card-discussion-info col-lg-6 d-flex justify-content-between">
             <span></span>
             <span></span>
-            <p>Share</p>
+            <i class="fas fa-share-alt"></i>
           </div>
       </div>
       <div class="row">
@@ -43,12 +41,26 @@
       </div>
     </div>
   </div>
+
 <% end %>
 </div>
-
-  <div class="col-sm-12 col-lg-6" style="background-color: #191A1A; min-height: 100vh;">
-  <h1 class="board-stats-text" style="margin: 50px 0px 0px 30px;">You have:&nbsp<%= @comparisons.count %>&nbspcomparisons</h1>
+<div class="col-sm-12 col-lg-7" style="background-color: black; min-height: 100vh;">
+  <div class="row">
+    <div class="logos-comparison col-lg-8 d-flex justify-content-around">
+      <% @comparisons.each do |comparison|%>
+      <%= cl_image_tag(Source.find(comparison.publisher_one).img_cloudinary,
+        width: 70, height: 70, crop: :fill) %>
+      <%= cl_image_tag(Source.find(comparison.publisher_two).img_cloudinary,
+        width: 70, height: 70, crop: :fill) %>
+      <% end %>
+    </div>
   </div>
 
+  <div class="row">
+        <% @comparisons.each do |comparison| %>
 
+        <div id="my_canvas" data-words="<%= @words %> "style='height: 600px; width: 960px; border-radius: 8px;'></div>
+
+    <% end %>
+  </div>
 </div>

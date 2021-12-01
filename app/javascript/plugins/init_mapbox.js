@@ -35,11 +35,11 @@ const addMarkersToMap = (map, markers) => {
 
   markers.forEach((marker) => {
     const popup = new mapboxgl.Popup().setHTML(marker.info_window);
-
     // add event listener for the popup
     popup.on('open', () => {
       console.log('popup was opened');
       const popupElement = popup.getElement();
+
       // const canvas = popupElement.querySelector('.word-cloud-canvas')
       // initWordCloud(canvas);
       // const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
@@ -76,6 +76,11 @@ const addMarkersToMap = (map, markers) => {
           optTwo[index].selected = 'selected'
         }
       });
+      // const canvas = popupElement.querySelector('.word-cloud-canvas')
+      //console.log(canvas);
+     // initWordCloud(canvas)
+     // const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
+    //  pop.style.maxWidth = "900px";
 
     });
 
