@@ -40,10 +40,13 @@ const addMarkersToMap = (map, markers) => {
       console.log('popup was opened');
       const popupElement = popup.getElement();
 
-      // const canvas = popupElement.querySelector('.word-cloud-canvas')
-      // initWordCloud(canvas);
-      // const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
-      // pop.style.maxWidth = "900px";
+      const canvas = popupElement.querySelector('.word-cloud-canvas')
+      console.log(canvas);
+      initWordCloud(canvas)
+      const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
+      pop.style.maxWidth = "900px";
+      pop.style.fontFamily = "Inconsolata, monospace";
+
       // const pubOne =
       // const pubTwo =
 

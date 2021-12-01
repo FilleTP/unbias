@@ -1,6 +1,8 @@
 <div class="popup-container">
   <div class="popup-content" style="text-align: center;">
-    <h3 id="popup-header"><%= source.name.capitalize %></h3>
+    <h3 id="popup-header"><%= source.name %></h3>
+    <p style="font-size: 15px;">Sentiment:<%= textmood %></p>
+    <%=  %>
   </div>
   <div id="my_canvas" class='word-cloud-canvas' data-words="<%= words %>" style='height: 400px; width: 400px; font-size: 10px; z-index: 10'></div>
 </div>
