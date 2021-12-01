@@ -4,10 +4,10 @@ class BoardsController < ApplicationController
     @comparisons_all = current_user.comparisons
     @comparisons = @comparisons_all.select do |comparison|
       comparison.articles_one.present?
-      selected_articles_one = JSON.parse(comparison.selected_articles_one)
-      selected_articles_two = JSON.parse(comparison.selected_articles_two)
-      comparison.update(sentiment_one: avg_textmood(selected_articles_one))
-      comparison.update(sentiment_two: avg_textmood(selected_articles_two))
+      # selected_articles_one = JSON.parse(comparison.selected_articles_one)
+      # selected_articles_two = JSON.parse(comparison.selected_articles_two)
+      # comparison.update(sentiment_one: avg_textmood(selected_articles_one))
+      # comparison.update(sentiment_two: avg_textmood(selected_articles_two))
     end
   end
 
