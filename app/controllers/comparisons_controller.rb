@@ -38,7 +38,7 @@ class ComparisonsController < ApplicationController
     payload(@url_worldmap)
     @articles = JSON.parse(@response.body)["data"]
 
-    @articles += @articles_fox +@articles_cnn + @articles_bbc
+    @articles += @articles_fox + @articles_cnn + @articles_bbc
 
     @textmood = avg_textmood(@articles)
     word_counter(@articles)
@@ -62,10 +62,10 @@ class ComparisonsController < ApplicationController
         end
 
         filtered_textmood = @textmood.find do |element|
-          element["#{source[:source_keyword]} "] || element["#{source[:name]} "]
+          (element["#{source[:source_keyword]} "] || element["#{source[:name]} "])
         end
 
-        textmood = filtered_textmood.values[0][:average_description]
+        textmood = filtered_textmood.values[0][:average_description] unless filtered_textmood.nil?
 
         words = word_counter(filtered_articles)
 
