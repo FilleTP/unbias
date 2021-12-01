@@ -7,12 +7,7 @@
     <%= @tally[source.name].to_i + @tally[source.source_keyword] %>
 
 
-
+<%@words %>
     <%= @tally[source.name].to_i + @tally[source.source_keyword[0,3]].to_i %>
 
-<%= av = @averages.map do |hash|
-  hash.select do |key, value|
-    [:source, :average_description].include? source.name
-  end
-end %>
-
+<div id="my_canvas" class='word-cloud-canvas' data-words="<%= words %>" style='height: 600px; width: 960px; font-size: 10px; z-index: 10'></div>

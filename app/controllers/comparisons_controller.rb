@@ -55,7 +55,7 @@ class ComparisonsController < ApplicationController
           {
             lat: source.latitude,
             lng: source.longitude,
-            info_window: render_to_string(partial: "info_window", locals: { source: source, articles: articles }),
+            info_window: render_to_string(partial: "info_window", locals: { source: source, articles: articles, words: @words }),
             image_url: helpers.asset_url(source.img)
             # info_window: render_to_string(partial: "info_window")
           }
