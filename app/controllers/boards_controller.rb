@@ -50,4 +50,6 @@ class BoardsController < ApplicationController
       "Unknown"
     end
   end
+
+
 end
