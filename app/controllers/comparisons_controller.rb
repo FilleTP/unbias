@@ -6,7 +6,6 @@ require 'words_counted'
 BASE_URL = "http://api.mediastack.com/v1/news?access_key=bc6099508dd0e4321fbe33e136b8cd96&languages=en"
 
 class ComparisonsController < ApplicationController
-  # before_action :show, :filter_sources
   def create
     @comparison = Comparison.new(strong_params)
     @comparison.user = current_user
@@ -39,7 +38,7 @@ class ComparisonsController < ApplicationController
     payload(@url_worldmap)
     @articles = JSON.parse(@response.body)["data"]
 
-    @articles += @articles_cnn + @articles_bbc + @articles_fox
+    @articles += @articles_fox +@articles_cnn + @articles_bbc
 
     @textmood = avg_textmood(@articles)
     word_counter(@articles)
@@ -48,7 +47,10 @@ class ComparisonsController < ApplicationController
 
 
   def generate_markers(articles)
-    @sources = generate_sources(articles)
+    @sources = Source.where(name: articles.map { |article| article["source"]})
+                .or(Source.where(source_keyword: articles.map { |article| article["source"] }))
+                .or(Source.where(source_keyword: 'foxnews'))
+
     @tally = tally(articles)
     # @tally[source['source_keyword']].to_i.times do
       @markers = @sources.geocoded.map do |source|
@@ -126,7 +128,9 @@ class ComparisonsController < ApplicationController
 
   def avg_textmood(articles)
     tm = TextMood.new(language: "en", normalize_score: true)
-    @sources = generate_sources(articles)
+    @sources = Source.where(name: articles.map { |article| article["source"]})
+                .or(Source.where(source_keyword: articles.map { |article| article["source"] }))
+                .or(Source.where(source_keyword: 'foxnews'))
     @tally = articles.map { |article| article["source"] }.tally
 
     articles.each do |article|
@@ -195,10 +199,10 @@ class ComparisonsController < ApplicationController
 
   def generate_sources(articles)
     @sources = Source.where(source_keyword: articles.map { |article| article["source"] })
-          .or(Source.where(name: articles.map { |article| article["source"] }))
-          .or(Source.where(name: articles.map { |article| article["source"].start_with?("BBC")}))
-          .or(Source.where(name: articles.map { |article| article["source"].start_with?("CNN")}))
-          .or(Source.where(name: articles.map { |article| article["source"].start_with?("FOX")}))
+              .or(Source.where(name: articles.map { |article| article["source"] }))
+              .or(Source.where(name: articles.map { |article| article["source"].start_with?("BBC")}))
+              .or(Source.where(name: articles.map { |article| article["source"].start_with?("CNN")}))
+              .or(Source.where(name: articles.map { |article| article["source"].start_with?("FOX") }))
   end
 
   private
@@ -227,14 +231,14 @@ class ComparisonsController < ApplicationController
     Source.all.each do |source|
       sources << source['source_keyword']
     end
-    @url_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=#{sources.join(',')},-cnn,-bbc,-foxnews&limit=100"
+    @url_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=#{sources.join(',')},-cnn,-bbc&limit=100"
     @url_cnn_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=cnn&limit=50"
     @url_bbc_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=bbc&limit=50"
     @url_fox_worldmap = "#{BASE_URL}#{keyword}#{date}&sources=foxnews&limit=50"
 
-
     @url_one = "#{BASE_URL}#{keyword}#{date}#{publisher_one}#{country_one}"
     @url_two = "#{BASE_URL}#{keyword}#{date}#{publisher_two}#{country_two}"
+
   end
 
   def payload(url)
