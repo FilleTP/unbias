@@ -2,7 +2,9 @@ import mapboxgl from '!mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { initWordCloud } from './init_word_cloud';
 
+
 const initMapbox = () => {
+
   const mapElement = document.getElementById('map');
 
   if (mapElement) { // only build a map if there's a div#map to inject into
@@ -30,19 +32,59 @@ const initMapbox = () => {
 
 const addMarkersToMap = (map, markers) => {
 
+
   markers.forEach((marker) => {
     const popup = new mapboxgl.Popup().setHTML(marker.info_window);
-
     // add event listener for the popup
     popup.on('open', () => {
       console.log('popup was opened');
       const popupElement = popup.getElement();
+
       const canvas = popupElement.querySelector('.word-cloud-canvas')
       console.log(canvas);
       initWordCloud(canvas)
       const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
       pop.style.maxWidth = "900px";
       pop.style.fontFamily = "Inconsolata, monospace";
+
+      // const pubOne =
+      // const pubTwo =
+
+      // add button
+      const btnAdd = popupElement.getElementById('popup-header');
+      // input publisher one
+      const optOne = document.getElementById('comparison_publisher_one').getElementsByTagName('option');
+      console.log(Object.entries(optOne), optOne[1]);
+      const optTwo = document.getElementById('comparison_publisher_two').getElementsByTagName('option')
+
+      optOne.forEach(element => console.log(element.innerHTML));
+      btnAdd.addEventListener("click", (event) => {
+        event.preventDefault()
+
+        const sourceName = document.querySelector('.source-name-hidden').innerText
+
+        const arr = []
+        console.log(optOne[1].innerHTML);
+        let index = parseInt(arr.indexOf(sourceName)) + 1
+
+        if (optOne[0].selected) {
+          const optOne = document.getElementById('comparison_publisher_one').getElementsByTagName('option')
+          console.log(optOne);
+          // optOne.outerText = sourceName
+          optOne[index].selected = 'selected'
+          console.log(index);
+
+        } else {
+          const optTwo = document.getElementById('comparison_publisher_two').getElementsByTagName('option')
+          optTwo[index].selected = 'selected'
+        }
+      });
+      // const canvas = popupElement.querySelector('.word-cloud-canvas')
+      //console.log(canvas);
+     // initWordCloud(canvas)
+     // const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
+    //  pop.style.maxWidth = "900px";
+
     });
 
     const element = document.createElement('div');
@@ -66,6 +108,10 @@ const addMarkersToMap = (map, markers) => {
       .setPopup(popup) // add this
       .addTo(map);
   });
+
+
+
+
 };
 
 
