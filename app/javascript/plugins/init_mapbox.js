@@ -40,6 +40,8 @@ const addMarkersToMap = (map, markers) => {
       const canvas = popupElement.querySelector('.word-cloud-canvas')
       console.log(canvas);
       initWordCloud(canvas)
+      const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
+      pop.style.maxWidth = "900px";
     });
 
     const element = document.createElement('div');

@@ -41,7 +41,7 @@ class ComparisonsController < ApplicationController
 
     @articles += @articles_cnn + @articles_bbc + @articles_fox
 
-    avg_textmood(@articles)
+    @textmood = avg_textmood(@articles)
     word_counter(@articles)
     generate_markers(@articles)
   end
@@ -55,6 +55,11 @@ class ComparisonsController < ApplicationController
         filtered_articles = articles.select do |article|
           (article["source"] == source[:name]) || (article["source"] == source[:source_keyword])
         end
+
+        # filtered_textmood = @textmood.find do |element|
+        #   source_keyword = source[:source_keyword]
+        #   element[source_keyword]
+        # end
 
         words = word_counter(filtered_articles)
 
@@ -148,6 +153,7 @@ class ComparisonsController < ApplicationController
 
       @averages << { "#{key} " => { average_title: @average_title, average_description: @average_description } }
     end
+    return @averages
   end
 
   def stringify_sentiment(number)

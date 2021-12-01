@@ -16,12 +16,21 @@
 }
 
 .mapboxgl-popup {
-  width: 500px;
-  max-height: 400px;
+  width: 400px;
+  max-height: 300px;
+  background-color: black;
 }
 
 .mapboxgl-marker {
   svg g {
     fill: $main !important;
   }
+}
+
+.popup-content {
+  text-align: center;
+}
+
+#popup-header {
+  text-align: center;
 }
