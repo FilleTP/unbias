@@ -6,7 +6,22 @@
   <h1>News comparison</h1>
   <div class="articles-compare-container">
     <div class=articles-left>
-      <h2 class="header" id="myHeader"> <%= articles_one.last["source"].capitalize unless (articles_one.empty? || articles_one.nil? ) %> </h2>
+      <h2 class="header" id="myHeader">
+        <%= unless (articles_one.empty? || articles_one.nil? )
+              if articles_one.first["source"].upcase.start_with?('BBC')
+                "BBC"
+              elsif articles_one.first["source"].upcase.start_with?('CNN')
+                "CNN"
+              elsif articles_one.first["source"].upcase == ('EN')
+                "Sputnik"
+              elsif articles_one.first["source"].upcase.start_with?('FOX')
+                "FOX News"
+              else
+                articles_one.first["source"].upcase
+              end
+            end  %>
+      </h2>
+
       <!-- <div class="articles-card-container">
         <div id="my_canvas" data-words="<%= @words_one %> "style='height: 268px; width: 733px; border-radius: 8px;'></div>
       </div> -->
@@ -48,7 +63,20 @@
     </div>
 
     <div class="articles-right">
-      <h2 class="header" id="myHeader"> <%= articles_two.last["source"].capitalize  unless articles_one.empty? %> </h2>
+      <h2 class="header" id="myHeader">
+        <%= unless (articles_two.empty? || articles_two.nil? )
+      if articles_two.first["source"].upcase.start_with?('BBC')
+        "BBC"
+      elsif articles_two.first["source"].upcase.start_with?('CNN')
+      "CNN"
+      elsif articles_two.first["source"].upcase == ('EN')
+        "Sputnik"
+      elsif articles_two.first["source"].upcase.start_with?('FOX')
+        "FOX News"
+      else
+      articles_two.first["source"].upcase
+      end
+    end  %></h2>
       <!--<div class="articles-card-container">
         <div id="my_canvas" data-words="<%= @words_two %>  "style='height: 268px; width: 268px; border-radius: 8px;'></div>
       </div> -->

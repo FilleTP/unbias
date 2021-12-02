@@ -54,9 +54,9 @@ const addMarkersToMap = (map, markers) => {
       const btnAdd = popupElement.querySelector('.input-map-add');
       // input publisher one
       const optOne = document.getElementById('comparison_publisher_one');
-
       const optTwo = document.getElementById('comparison_publisher_two')
-
+      const showBlock = document.querySelector('.javi-block')
+      console.log(showBlock);
 
       btnAdd.addEventListener("click", (event) => {
         event.preventDefault()
@@ -65,10 +65,16 @@ const addMarkersToMap = (map, markers) => {
 
         if (optOne.value == "") {
           optOne.value = sourceName
-          console.log(optTwo.value);
+          showBlock.style.display = "block";
+          showBlock.style.zIndex = "10";
+          showBlock.style.opacity = "1";
+
+
         } else if (optOne.value != "" && optTwo.value == "") {
           optTwo.value = sourceName
-          console.log(optTwo.value);
+          showBlock.style.display = "block";
+          showBlock.style.zIndex = "10";
+          showBlock.style.opacity = "1";
 
         }
       });

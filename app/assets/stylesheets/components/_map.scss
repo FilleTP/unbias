@@ -13,8 +13,6 @@
 }
 #map {
   min-height: 83vh;
-  .superwith {
-  max-width: 900px !important;
 }
 
 .mapboxgl-popup {
@@ -36,4 +34,8 @@
 #popup-header {
   text-align: center;
 
+}
+
+.mapboxgl-popup-content {
+  min-width: 500px !important;
 }

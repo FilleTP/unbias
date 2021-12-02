@@ -95,9 +95,24 @@ body {
 .absolute-form {
   position: absolute;
   z-index: 9999999;
-  top: 120px;
-  left: 40px;
-  input[type="submit"] {
-    min-width: 90px;
+  top: 100px;
+  right: 40px;
+  input {
+
+    background-color: transparent;
+    color: $main;
+    border: none;
+    z-index: 0;
   }
+  input[type="submit"] {
+
+    min-width: 90px;
+    background-color: $main;
+    color: white;
+  }
+}
+
+.javi-box {
+  display: none;
+  opacity: 0;
 }
