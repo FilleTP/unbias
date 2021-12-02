@@ -45,6 +45,7 @@ const addMarkersToMap = (map, markers) => {
       initWordCloud(canvas)
       const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
       pop.style.maxWidth = "900px";
+      pop.style.height = "300px";
       pop.style.fontFamily = "Inconsolata, monospace";
 
       // const pubOne =
