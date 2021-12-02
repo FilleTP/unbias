@@ -1,83 +1,57 @@
-<div class="row">
-  <div class="profile-container">
-    <div class="col-sm-12 col-lg-5">
-      <div class="profile-pic-container d-flex" style="margin-left:1130px;margin-top:10px;">
-        <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 5px;">37 Shares</p>
-        <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 5px; margin-left: 30px;">24 Comments</p>
-        <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 20px; margin-top: 5px; margin-left: 30px;">Tom Johnsson</p>
-        <i><%= image_tag "profile.jpg", style: 'height:53px;width:53px;border-radius:2px;margin-top:5px;margin-left:20px;' %></i>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="line col-sm-12 col-lg-2" style="margin-left:1140px;border-bottom: 1px solid white;">
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-sm-12 col-lg-6" id="board-card-container">
-  <% @comparisons.each do |comparison|%>
-    <div class="board-card">
-      <div class="container">
-       <div class="row">
-        <div class="topic-delete col-lg-12 d-flex justify-content-between">
-              <h3><%= comparison.topic.capitalize %></h3>
-              <%= link_to comparison_path(comparison), method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: "maxi-remove-article-button" do %>
-                <i class="far fa-window-close"></i>
-                <% end %>
-            </div>
-       </div>
-        <div class="row">
-          <div class="board-card-left col-lg-7">
-
-            <p class="board-source"><%= Source.find(comparison.publisher_one).name %></p>
-            <p class="board-source"><%= Source.find(comparison.publisher_two).name%></p>
-          </div>
-          <div class="board-card-right col-lg-5">
-            <%= link_to "Open Comparison", comparison_path(comparison)%>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="board-card-bottom col-lg-6 d-flex">
-            <p><%= comparison.start_date%></p>
-            <p><span>&nbspto </span><%= comparison.end_date%></p>
-          </div>
-          <div class="board-card-discussion-info col-lg-6 d-flex justify-content-between">
-            <span></span>
-            <span></span>
-            <i class="fas fa-share-alt"></i>
-          </div>
-      </div>
-      <div class="row">
-        <div class="board-card-bottom-border col-lg-12">
+<div class="my-container">
+  <div class="row">
+    <div class="profile-container" style="border-bottom: 1px solid white;">
+      <div class="col-sm-12 col-lg-5">
+        <div class="profile-pic-container d-flex">
+          <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 5px;">37 Shares</p>
+          <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 5px; margin-left: 30px;">24 Comments</p>
+          <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 20px; margin-top: 5px; margin-left: 30px;">Tom Johnsson</p>
+          <i><%= image_tag "profile.jpg", style: 'height:53px;width:53px;border-radius:2px;margin-top:5px;margin-left:20px;' %></i>
         </div>
       </div>
     </div>
   </div>
-<% end %>
-</div>
 
-<div class="col-sm-12 col-lg-6" style="background-color: $black; min-height: 100vh; padding: 0px; border-left: 1px solid white;">
-  <div class="stats row" >
-    <div class="logos-comparison col-lg-8 d-flex justify-content-around">
-      <% @comparisons.each do |comparison|%>
-      <%= cl_image_tag(Source.find(comparison.publisher_one).img_cloudinary,
-        width: 100, height: 100, radius: :max, crop: :fill) %>
-      <%= cl_image_tag(Source.find(comparison.publisher_two).img_cloudinary,
-        width: 100, height: 100, radius: :max, crop: :fill) %>
-      <% end %>
-    </div>
-  </div>
 
   <div class="row">
-    <div class="col-sm-12 col-lg-7 d-flex justify-content-around">
-        <% @comparisons.each do |comparison| %>
-        <p class="sentiment-comparison-one" style="color: white;">Sentiment: <%= comparison.sentiment_one %></p>
-        <p class="sentiment-comparison-two" style="color: white;">Sentiment: <%= comparison.sentiment_two %></p>
+    <div class="col-sm-12 col-lg-12" id="board-card-container">
+    <% @comparisons.each do |comparison|%>
+      <div class="board-card">
+        <div class="container">
+        <div class="row">
+          <div class="topic-delete col-lg-12 d-flex justify-content-between">
+                <h3 style="color: white;"><%= comparison.topic.capitalize %></h3>
+                <%= link_to comparison_path(comparison), method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: "maxi-remove-article-button" do %>
+                  <i class="far fa-window-close" style="color: white;"></i>
+                  <% end %>
+              </div>
+        </div>
+          <div class="row">
+            <div class="board-card-left col-lg-7">
+
+              <p class="board-source" style="color: white;"><%= Source.find(comparison.publisher_one).name %></p>
+              <p class="board-source" style="color: white;"><%= Source.find(comparison.publisher_two).name%></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="board-card-bottom col-lg-6 d-flex">
+              <p style="color: white;"><%= comparison.start_date%></p>
+              <p style="color: white;"><span>&nbspto </span><%= comparison.end_date%></p>
+            </div>
+            <div class="board-card-discussion-info col-lg-6 d-flex justify-content-between">
+              <span></span>
+              <span></span>
+              <i class="board-card-right"> <%= link_to "Open Comparison", comparison_path(comparison)%></i>
+              <i class="fas fa-share-alt" style="color: white;"></i>
+            </div>
+        </div>
+        <div class="row">
+          <div class="board-card-bottom-border col-lg-12">
+          </div>
+        </div>
+      </div>
     </div>
-    <% end %>
+  <% end %>
   </div>
 </div>
