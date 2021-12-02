@@ -68,7 +68,7 @@
         <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
           <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span >ADD ARTICLE</span></i></span>
         <% end %>
-        <h2 class="header" id="myHeader"> 
+        <h2 class="header" id="myHeader">
           <%= unless (articles_two.empty? || articles_two.nil? )
           if articles_two.first["source"].upcase.start_with?('BBC')
             "BBC"
@@ -123,7 +123,7 @@
   </div>
   <div class="bottom" style="background-color: black; height: 50px; position: reletive;">
     <div class="save">
-      <%= link_to 'Save Comparison', comparison_create_entries_path(comparison), method: :post, class: "button-white" %>
+      <%= link_to 'Save Comparison', comparison_create_entries_path(comparison), method: :post, class: "button-primary" %>
     </div>
   </div>
 </div>

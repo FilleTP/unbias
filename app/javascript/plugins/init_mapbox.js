@@ -12,7 +12,7 @@ const initMapbox = () => {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/jsuay/ckwgaz6fn05aj14lhe45rxbck',
-      center: [40.673147, 30.599413],
+      center: [20.673147, 30.599413],
       zoom: 1.3,
     });
 
@@ -43,8 +43,8 @@ const addMarkersToMap = (map, markers) => {
       const canvas = popupElement.querySelector('.word-cloud-canvas')
       initWordCloud(canvas)
       const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
-      pop.style.maxWidth = "900px";
-      pop.style.height = "300px";
+      // pop.style.maxWidth = "900px";
+      // pop.style.height = "300px";
       pop.style.fontFamily = "Inconsolata, monospace";
 
       // const pubOne =
@@ -53,11 +53,11 @@ const addMarkersToMap = (map, markers) => {
 
       // add button in markers
       const btnAdd = popupElement.querySelector('.input-map-add');
+      const compBtn = document.querySelector('.javi-compare-button')
       // input publisher one
       const optOne = document.getElementById('comparison_publisher_one');
       const optTwo = document.getElementById('comparison_publisher_two')
       const showBlock = document.querySelector('.javi-block')
-      console.log(showBlock);
 
       btnAdd.addEventListener("click", (event) => {
         event.preventDefault()
@@ -66,21 +66,31 @@ const addMarkersToMap = (map, markers) => {
 
         if (optOne.value == "") {
           optOne.value = sourceName
-          showBlock.style.display = "block";
-          showBlock.style.zIndex = "10";
-          showBlock.style.opacity = "1";
-
+          set_source(optOne)
+          // optOne.style.zIndex = "10";
+          // optOne.style.backgroundColor = "white";
+          // optOne.style.maxWidth = "200px";
+          // optOne.style.borderRadius = "18px";
+          // optOne.style.textAlign = "center";
 
         } else if (optOne.value != "" && optTwo.value == "") {
           optTwo.value = sourceName
-          showBlock.style.display = "block";
-          showBlock.style.zIndex = "10";
-          showBlock.style.opacity = "1";
-
+          set_source(optTwo)
+          // optTwo.style.display = "block";
+          // optTwo.style.zIndex = "10";
+          // optTwo.style.backgroundColor = "white";
+          // // showBlock.style.opacity = "1";
         }
+
       });
-
-
+      const set_source = (element) =>{
+        element.style.position = "relative";
+        element.style.display = "block";
+        element.style.zIndex = "10";
+        element.style.backgroundColor = "white";
+        element.style.borderRadius = "18px";
+        element.style.textAlign = "center";
+      }
     });
 
     const element = document.createElement('div');

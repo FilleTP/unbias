@@ -1,6 +1,5 @@
-<%= link_to 'Add to comparison', "#", class: "input-map-add" %>
 <div class="popup-container">
-  <%= link_to 'Add', "#", class: "maxi-input-map-add" %>
+  <%= link_to 'Add', "#", class: "maxi-input-map-add input-map-add button-primary" %>
 
   <div class="popup-content" style="text-align: center;">
     <h3 id="popup-header" style="font-size: 22px"><%= source.name.upcase %></h3>
@@ -10,4 +9,3 @@
 </div>
 
 <div id="my_canvas" class='word-cloud-canvas' data-words="<%= words %>" style='height: 250px; width: 400px; font-size: 10px; z-index: 10'></div>
-
