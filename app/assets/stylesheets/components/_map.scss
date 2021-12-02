@@ -8,9 +8,11 @@
 //   }
 // }
 
+
 .mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right {
   display: none !important;
 }
+
 #map {
   min-height: 83vh;
 }
@@ -85,6 +87,8 @@
 //     text-decoration: none;
 //   }
 //   }
+
+
  background-color: $main;
   color: white;
   border: 1px solid #FFFFFF;
