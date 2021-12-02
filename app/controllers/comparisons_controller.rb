@@ -92,6 +92,7 @@ class ComparisonsController < ApplicationController
     else
       if @comparison.update(publisher_one: params[:comparison][:publisher_one],
                             publisher_two: params[:comparison][:publisher_two])
+
         redirect_to comparison_path(@comparison)
       else
         :update
@@ -100,11 +101,12 @@ class ComparisonsController < ApplicationController
   end
 
   def show
-    @comparison = Comparison.find(params[:id])
 
+    @comparison = Comparison.find(params[:id])
     if @comparison.selected_articles_one && @comparison.selected_articles_two
       @articles_one = JSON.parse(@comparison.selected_articles_one)
       @articles_two = JSON.parse(@comparison.selected_articles_two)
+
     else
       build_url(@comparison)
       payload(@url_one)
@@ -220,11 +222,13 @@ class ComparisonsController < ApplicationController
     keyword = "&keywords=#{comparison.topic}"
     date = "&date=#{comparison.start_date},#{comparison.end_date}"
 
-    s_one = Source.where(id: @comparison.publisher_one)
+    s_one = Source.where(name: @comparison.publisher_one)
     publisher_one = "&sources=#{s_one[0]["source_keyword"]}" if s_one[0] != nil
 
-    s_two = Source.where(id: @comparison.publisher_two)
+    s_two = Source.where(name: @comparison.publisher_two)
     publisher_two = "&sources=#{s_two[0]["source_keyword"]}" if s_two[0] != nil
+
+
     country_one = ""
     country_two = ""
 
