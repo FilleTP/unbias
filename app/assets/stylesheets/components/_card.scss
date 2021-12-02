@@ -106,9 +106,26 @@
   }
 }
 
+.bottom {
+  height: 75px!important;
+  width: 100%;
+  position: fixed; bottom: 0px!important;
+  z-index: 15;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #191A1A!important;
+}
+
 .save  {
-  text-align: center;
-  margin-bottom: 25px;
+  align-items: center;
+  z-index: 20;
+  height: 37px;
+  margin-top: 26px;
+  .button-white {
+    background-color: #f55c29;
+    color: white;
+    border: black;
+  }
 }
 
 .article-card-text {
@@ -133,5 +150,22 @@
     position: absolute;
     bottom: 0;
     right: 15px;
+  }
+}
+
+
+.comparison-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 35px;
+  padding-right: 35px;
+  h2 {
+    color: white;
+    background-color: #191A1A!important;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: "Inconsolata", "monospace";
+    font-weight: 400!important;
   }
 }
