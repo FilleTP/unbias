@@ -175,11 +175,12 @@ Source.create!(name: "BBC",
                img: "bbc-logo.png",
                img_cloudinary: "bbc-logo_tm8tgd.png")
 
-Source.create!(name: "FOX news",
+Source.create!(name: "FOX",
                source_keyword: "foxnews",
                address: "New Jersey, USA",
                img: "fox-logo.png",
                img_cloudinary: "fox-logo_ksjhat.png")
+
 
 # STILL NOT WORKING:
 
