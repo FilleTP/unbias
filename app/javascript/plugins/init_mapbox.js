@@ -12,7 +12,7 @@ const initMapbox = () => {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/jsuay/ckwgaz6fn05aj14lhe45rxbck',
-      center: [40.673147, 30.599413],
+      center: [20.673147, 30.599413],
       zoom: 1.3,
     });
 
@@ -53,6 +53,7 @@ const addMarkersToMap = (map, markers) => {
 
       // add button in markers
       const btnAdd = popupElement.querySelector('.input-map-add');
+      const compBtn = document.querySelector('.javi-compare-button')
       // input publisher one
       const optOne = document.getElementById('comparison_publisher_one');
       const optTwo = document.getElementById('comparison_publisher_two')
@@ -66,18 +67,20 @@ const addMarkersToMap = (map, markers) => {
 
         if (optOne.value == "") {
           optOne.value = sourceName
-          showBlock.style.display = "block";
-          showBlock.style.zIndex = "10";
-          showBlock.style.opacity = "1";
+          optOne.style.display = "block";
+          optOne.style.zIndex = "10";
+          // sshowBlock.style.opacity = "1";
 
 
         } else if (optOne.value != "" && optTwo.value == "") {
           optTwo.value = sourceName
-          showBlock.style.display = "block";
-          showBlock.style.zIndex = "10";
-          showBlock.style.opacity = "1";
+          optTwo.style.display = "block";
+          optTwo.style.zIndex = "10";
+          // showBlock.style.opacity = "1";
+
 
         }
+
       });
 
 

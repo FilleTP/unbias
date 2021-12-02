@@ -1,4 +1,5 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background-color: <%= (controller_name == 'comparisons' && action_name == 'worldmap') ? "transparent" : "#191A1A" %>;">
+<div class="my-container">
+ <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background-color: <%= (controller_name == 'comparisons' && action_name == 'worldmap') ? "transparent" : "#191A1A" %>;">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png" %>
   <% end %>
@@ -8,7 +9,7 @@
       <%= f.input :topic, placeholder: "Change topic" %>
       <%= f.input :end_date, as: :string, html5: true, input_html: {class: "datepicker"}, placeholder: "From*", label: false  %>
       <%= f.input :start_date, as: :string, html5: true, input_html: {class: "datepicker"}, placeholder: "To*", label: false %>
-      <%= f.button :button, method: :post, class: "button-primary" do %>
+      <%= f.button :button, method: :post, class: "button-white" do %>
         Search
       <% end %>
     <% end %>
@@ -35,4 +36,5 @@
       <% end %>
     </ul>
   </div>
+</div>
 </div>

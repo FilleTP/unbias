@@ -3,7 +3,7 @@
     <%= simple_form_for @comparison do |f| %>
       <%= f.input :publisher_one, label: false %>
       <%= f.input :publisher_two, label: false %>
-      <%= f.button :submit, 'Show', class: "button-white"%>
+      <%= f.button :submit, 'Compare', class: "button-white javi-compare-button", disabled: false %>
     <% end %>
     <div class="javi-box"><a href="#">X</a><span class="javi_source_one"></span> <a href="#">X</a><span class="javi_source_two"></span></div>
   </div>
