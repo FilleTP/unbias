@@ -192,10 +192,11 @@ class ComparisonsController < ApplicationController
   end
 
   def word_counter(articles)
-    stop_words = Article::STOPWORDS
+    @stop_words = Article::STOPWORDS
+    topic = @comparison.topic
     tokenized = ""
     articles.each do |article|
-      tokenized += WordsCounted::Tokeniser.new(article["description"]).tokenise(exclude: stop_words).join(" ")
+      tokenized += WordsCounted::Tokeniser.new(article["description"]).tokenise(exclude: [@stop_words, topic]).join(" ")
     end
       @words = WordsCounted.count(tokenized).token_frequency
   end

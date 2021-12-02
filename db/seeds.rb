@@ -98,7 +98,7 @@ Source.create!(name: "Dutchnews",
 
 Source.create!(name: "Independent",
                source_keyword: "independent",
-               address: "Kensington, London",
+               address: "Manchester, England",
                img: "independent.png",
                img_cloudinary: "independent_ppkdcu.png")
 
