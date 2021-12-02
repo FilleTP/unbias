@@ -8,15 +8,12 @@
 //   }
 // }
 
-// .mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right {
-//   display: none !important;
-// }
-// #map {
-//   min-height: 83vh;
-//   .superwith {
-//   max-width: 900px !important;
-//   }
-// }
+.mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
+#map {
+  min-height: 83vh;
+}
 
 // .mapboxgl-popup {
 //   // width: 600px !important;
@@ -70,4 +67,8 @@
     background-color: black;
     text-decoration: none;
   }
+}
+
+.mapboxgl-popup-content {
+  min-width: 500px !important;
 }

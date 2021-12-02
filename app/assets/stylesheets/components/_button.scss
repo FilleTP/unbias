@@ -29,13 +29,14 @@
     text-decoration: none;
   }
 }
+
 .input-map-add {
   position: fixed;
-  top: 0;
+  top: 20px;
   color: white;
   background: black;
   text-decoration: none;
-  padding: 20px;
+  padding: 5px 20px;
   &:hover {
     color: white;
     text-decoration: none;

@@ -247,6 +247,20 @@ class ComparisonsController < ApplicationController
 
   end
 
+  def show_header(string)
+    unless (string.empty? || string.nil? )
+      if string.first["source"].upcase.start_with?('BBC')
+        "BBC"
+      elsif string.first["source"].upcase.start_with?('CNN')
+        "CNN"
+      elsif string.first["source"].upcase == ('EN')
+        "Sputnik"
+      else
+        string.first["source"].upcase
+      end
+    end
+  end
+
   def payload(url)
     retries = 0
     begin

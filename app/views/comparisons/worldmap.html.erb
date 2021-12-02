@@ -1,11 +1,11 @@
 <% content_for :nav, render('shared/form_navbar') %>
   <div class="maxi-search-bar-home maxi-choose-bias-form absolute-form javi">
-
     <%= simple_form_for @comparison do |f| %>
       <%= f.input :publisher_one, label: false %>
       <%= f.input :publisher_two, label: false %>
       <%= f.button :submit, 'Show', class: "button-white"%>
     <% end %>
+    <div class="javi-box"><a href="#">X</a><span class="javi_source_one"></span> <a href="#">X</a><span class="javi_source_two"></span></div>
   </div>
   <div id="map"
     style="width: 100%; height:83vh; margin: 0 auto; margin-bottom: 100px;"
