@@ -23,21 +23,23 @@
               <% end %>
             </div>
             <div class="article-card-text">
-              <div class="articles-card-date-cat">
-                <p><%= article["category"].upcase %> </p>
-                <%= article["published_at"].first(10) %>
-                <%= link_to comparison_remove_article_one_path(@comparison, article), class: "maxi-remove-article-button" do %>
-                <i class="far fa-window-close"></i>
-                <% end %>
+              <div>
+                <div class="articles-card-date-cat">
+                  <p><%= article["category"].upcase %> </p>
+                  <%= article["published_at"].first(10) %>
+                  <%= link_to comparison_remove_article_one_path(@comparison, article), class: "maxi-remove-article-button" do %>
+                  <i class="far fa-window-close"></i>
+                  <% end %>
+                </div>
+                <div class="article-card-info">
+                  <h5 class="info-title"><%= article["title"] %> </h5>
+                  <p class="info-description"><%= article["description"] %> </p>
+                </div>
               </div>
-              <div class="article-card-info">
-                <h5 class="info-title"><%= article["title"] %> </h5>
-                <p class="info-description"><%= article["description"] %> </p>
-              </div>
-              <div class="article-author-sentiment">
-                <p class="author">Source: <%= article["source"] %> </p>
-                <p class="sentiment">Sentiment: <%= article["sentiment_description_string"] %> </p>
-              </div>
+                <div class="article-author-sentiment">
+                  <p class="author">Source: <%= article["source"] %> </p>
+                  <p class="sentiment">Sentiment: <%= article["sentiment_description_string"] %> </p>
+                </div>
             </div>
           </div>
         <% end %>
@@ -58,16 +60,18 @@
         <% else %>
           <div class="articles-card-container">
             <div class="article-card-text">
-              <div class="articles-card-date-cat">
-                <p><%= article["category"].upcase %> </p>
-                <%= article["published_at"].first(10) %>
-                <%= link_to comparison_remove_article_two_path(@comparison, article), class: "maxi-remove-article-button" do %>
-                <i class="far fa-window-close"></i>
-                <% end %>
-              </div>
-              <div class="article-card-info">
-                <h5 class="info-title"><%= article["title"] %> </h5>
-                <p class="info-description"><%= article["description"] %> </p>
+              <div>
+                <div class="articles-card-date-cat">
+                  <p><%= article["category"].upcase %> </p>
+                  <%= article["published_at"].first(10) %>
+                  <%= link_to comparison_remove_article_two_path(@comparison, article), class: "maxi-remove-article-button" do %>
+                  <i class="far fa-window-close"></i>
+                  <% end %>
+                </div>
+                <div class="article-card-info">
+                  <h5 class="info-title"><%= article["title"] %> </h5>
+                  <p class="info-description"><%= article["description"] %> </p>
+                </div>
               </div>
               <div class="article-author-sentiment">
                 <p class="author">Source: <%= article["source"] %> </p>
