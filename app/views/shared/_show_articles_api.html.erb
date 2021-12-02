@@ -56,8 +56,8 @@
                 </div>
               </div>
               <div class="article-author-sentiment">
-                <p class="author">Source: <%= article["source"] %> </p>
-                <p class="sentiment">Sentiment: <%= article["sentiment_description_string"] %> </p>
+                <p class="author"><%= article["source"] %> </p>
+                <p class="sentiment">Tone: <%= article["sentiment_description_string"] %> </p>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@
 
     <div class="articles-right">
       <div class="comparison-header">
-        <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
+        <%= link_to comparison_add_article_two_path(comparison), class: "maxi-add-article-button" do %>
           <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span >ADD ARTICLE</span></i></span>
         <% end %>
         <h2 class="header" id="myHeader">
@@ -109,8 +109,8 @@
                 </div>
               </div>
               <div class="article-author-sentiment">
-                <p class="author">Source: <%= article["source"] %> </p>
-                <p class="sentiment">Sentiment: <%= article["sentiment_description_string"] %> </p>
+                <p class="author"><%= article["source"] %> </p>
+                <p class="sentiment">Tone: <%= article["sentiment_description_string"] %> </p>
               </div>
             </div>
             <div class="articles-card-image">

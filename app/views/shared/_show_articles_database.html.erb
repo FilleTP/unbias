@@ -38,7 +38,7 @@
               </div>
                 <div class="article-author-sentiment">
                   <p class="author">Source: <%= article["source"] %> </p>
-                  <p class="sentiment">Sentiment: <%= article["sentiment_description_string"] %> </p>
+                  <p class="sentiment">Tone: <%= article["sentiment_description_string"] %> </p>
                 </div>
             </div>
           </div>
@@ -74,8 +74,8 @@
                 </div>
               </div>
               <div class="article-author-sentiment">
-                <p class="author">Source: <%= article["source"] %> </p>
-                <p class="sentiment">Sentiment: <%= article["sentiment_description_string"] %> </p>
+                <p class="author"><%= article["source"] %> </p>
+                <p class="sentiment">Tone: <%= article["sentiment_description_string"] %> </p>
               </div>
             </div>
             <div class="articles-card-image">

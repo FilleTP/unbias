@@ -111,6 +111,7 @@ class ComparisonsController < ApplicationController
       build_url(@comparison)
       payload(@url_one)
       @articles_one = JSON.parse(@response.body)["data"].first(10)
+
       @comparison.update(articles_one: JSON.parse(@response.body)["data"].to_json)
       @comparison.update(selected_articles_one: @articles_one.to_json)
 
