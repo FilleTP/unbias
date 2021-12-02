@@ -177,7 +177,7 @@ Source.create!(name: "BBC",
 
 Source.create!(name: "FOX",
                source_keyword: "foxnews",
-               address: "New Jersey, USA",
+               address: "Texas, USA",
                img: "fox-logo.png",
                img_cloudinary: "fox-logo_ksjhat.png")
 
