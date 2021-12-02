@@ -50,7 +50,7 @@ Source.create!(name: "Independent Online",
 
 Source.create!(name: "The Journal",
                source_keyword: "thejournal",
-               address: "Dublin",
+               address: "Galway",
                img: "journal-logo.png",
                img_cloudinary: "journal-logo_norfkd.png")
 
@@ -98,7 +98,7 @@ Source.create!(name: "Dutchnews",
 
 Source.create!(name: "Independent",
                source_keyword: "independent",
-               address: "Manchester, England",
+               address: "Edinburgh, Scottland",
                img: "independent.png",
                img_cloudinary: "independent_ppkdcu.png")
 
