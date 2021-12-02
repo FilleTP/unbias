@@ -2,7 +2,9 @@ import mapboxgl from '!mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { initWordCloud } from './init_word_cloud';
 
+
 const initMapbox = () => {
+
   const mapElement = document.getElementById('map');
 
   if (mapElement) { // only build a map if there's a div#map to inject into
@@ -10,7 +12,7 @@ const initMapbox = () => {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/jsuay/ckwgaz6fn05aj14lhe45rxbck',
-      center: [10.673147, 30.599413],
+      center: [40.673147, 30.599413],
       zoom: 1.3,
     });
 
@@ -30,18 +32,48 @@ const initMapbox = () => {
 
 const addMarkersToMap = (map, markers) => {
 
+
   markers.forEach((marker) => {
     const popup = new mapboxgl.Popup().setHTML(marker.info_window);
-
     // add event listener for the popup
     popup.on('open', () => {
       console.log('popup was opened');
       const popupElement = popup.getElement();
+
       const canvas = popupElement.querySelector('.word-cloud-canvas')
-      console.log(canvas);
       initWordCloud(canvas)
       const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
       pop.style.maxWidth = "900px";
+      pop.style.fontFamily = "Inconsolata, monospace";
+
+      // const pubOne =
+      // const pubTwo =
+
+
+      // add button in markers
+      const btnAdd = popupElement.querySelector('.input-map-add');
+      // input publisher one
+      const optOne = document.getElementById('comparison_publisher_one');
+
+      const optTwo = document.getElementById('comparison_publisher_two')
+
+
+      btnAdd.addEventListener("click", (event) => {
+        event.preventDefault()
+        const sourceName = document.getElementById('popup-header').innerText
+
+
+        if (optOne.value == "") {
+          optOne.value = sourceName
+          console.log(optTwo.value);
+        } else if (optOne.value != "" && optTwo.value == "") {
+          optTwo.value = sourceName
+          console.log(optTwo.value);
+
+        }
+      });
+
+
     });
 
     const element = document.createElement('div');
@@ -49,7 +81,7 @@ const addMarkersToMap = (map, markers) => {
     element.className = 'marker';
     element.style.backgroundImage = `url('${marker.image_url}')`;
     element.style.backgroundRepeat = 'no-repeat';
-    element.style.borderRadius = '50%';
+    element.style.borderRadius = '50px';
     element.style.backgroundColor = 'white';
     element.style.backgroundSize = 'contain';
     element.style.width = '50px';
@@ -65,6 +97,10 @@ const addMarkersToMap = (map, markers) => {
       .setPopup(popup) // add this
       .addTo(map);
   });
+
+
+
+
 };
 
 

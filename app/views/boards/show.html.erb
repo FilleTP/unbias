@@ -1,7 +1,23 @@
+<div class="row">
+  <div class="profile-container">
+    <div class="col-sm-12 col-lg-5">
+      <div class="profile-pic-container d-flex" style="margin-left:1130px;margin-top:10px;">
+        <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 5px;">37 Shares</p>
+        <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 5px; margin-left: 30px;">24 Comments</p>
+        <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 20px; margin-top: 5px; margin-left: 30px;">Tom Johnsson</p>
+        <i><%= image_tag "profile.jpg", style: 'height:53px;width:53px;border-radius:2px;margin-top:5px;margin-left:20px;' %></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="line col-sm-12 col-lg-2" style="margin-left:1140px;border-bottom: 1px solid white;">
+  </div>
+</div>
+
 
 <div class="row">
-  <div class="col-sm-12 col-lg-5" id="board-card-container">
-  <h1 id="headline-board-comparisons">Comparisons</h1>
+  <div class="col-sm-12 col-lg-6" id="board-card-container">
   <% @comparisons.each do |comparison|%>
     <div class="board-card">
       <div class="container">
@@ -41,26 +57,27 @@
       </div>
     </div>
   </div>
-
 <% end %>
 </div>
-<div class="col-sm-12 col-lg-7" style="background-color: black; min-height: 100vh;">
-  <div class="row">
+
+<div class="col-sm-12 col-lg-6" style="background-color: $black; min-height: 100vh; padding: 0px; border-left: 1px solid white;">
+  <div class="stats row" >
     <div class="logos-comparison col-lg-8 d-flex justify-content-around">
       <% @comparisons.each do |comparison|%>
       <%= cl_image_tag(Source.find(comparison.publisher_one).img_cloudinary,
-        width: 70, height: 70, crop: :fill) %>
+        width: 100, height: 100, radius: :max, crop: :fill) %>
       <%= cl_image_tag(Source.find(comparison.publisher_two).img_cloudinary,
-        width: 70, height: 70, crop: :fill) %>
+        width: 100, height: 100, radius: :max, crop: :fill) %>
       <% end %>
     </div>
   </div>
 
   <div class="row">
+    <div class="col-sm-12 col-lg-7 d-flex justify-content-around">
         <% @comparisons.each do |comparison| %>
-
-        <div id="my_canvas" data-words="<%= @words %> "style='height: 600px; width: 960px; border-radius: 8px;'></div>
-
+        <p class="sentiment-comparison-one" style="color: white;">Sentiment: <%= comparison.sentiment_one %></p>
+        <p class="sentiment-comparison-two" style="color: white;">Sentiment: <%= comparison.sentiment_two %></p>
+    </div>
     <% end %>
   </div>
 </div>

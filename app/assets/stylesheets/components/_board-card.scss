@@ -7,6 +7,9 @@
 
 #board-card-container {
   margin: 0 auto;
+  padding-left: 70px;
+  padding-right: 50px;
+  padding-top: 30px;
 
 }
 .board-card-right a {
@@ -40,7 +43,9 @@
 }
 
 #headline-board-comparisons {
-  margin-top: 50px;
+  margin-top: 40px;
+  margin-left: 50px;
+  color: white;
 }
 
 #share-icon {
@@ -62,5 +67,32 @@
 
 .logos-comparison {
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 30px;
+}
+
+.sentiment-comparison-one {
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-left: 350px;
+}
+
+.sentiment-comparison-two {
+  margin-top: 50px;
+  margin-left: 250px;
+}
+
+.greeting-board {
+  margin-top: 40px;
+  margin-left: 0px;
+
+}
+
+.profile-container {
+  background-color: $black;
+
+
+}
+
+.stats {
+  display: none;
 }
