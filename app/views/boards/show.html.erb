@@ -1,12 +1,12 @@
 <div class="my-container">
   <div class="row">
-    <div class="profile-container" style="border-bottom: 1px solid white;">
+    <div class="profile-container" style="margin-left: 950px;">
       <div class="col-sm-12 col-lg-5">
         <div class="profile-pic-container d-flex">
-          <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 5px;">37 Shares</p>
-          <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 5px; margin-left: 30px;">24 Comments</p>
-          <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 20px; margin-top: 5px; margin-left: 30px;">Tom Johnsson</p>
-          <i><%= image_tag "profile.jpg", style: 'height:53px;width:53px;border-radius:2px;margin-top:5px;margin-left:20px;' %></i>
+          <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 15px;">37 Shares</p>
+          <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 12px; margin-top: 15px; margin-left: 30px;">24 Comments</p>
+          <p class="greeting-board" style="color:white; font-family: inconsolata; font-size: 20px; margin-top: 10px; margin-left: 30px;">Tom Johnsson</p>
+          <i><%= image_tag "profile.jpg", style: 'height:53px;width:53px;border-radius:2px;margin-top:10px;margin-left:20px;' %></i>
         </div>
       </div>
     </div>
@@ -29,8 +29,10 @@
           <div class="row">
             <div class="board-card-left col-lg-7">
 
+
               <p class="board-source" style="color: white;"><%= comparison.publisher_one %></p>
               <p class="board-source" style="color: white;"><%= comparison.publisher_two %></p>
+
             </div>
           </div>
 
@@ -42,8 +44,8 @@
             <div class="board-card-discussion-info col-lg-6 d-flex justify-content-between">
               <span></span>
               <span></span>
-              <i class="board-card-right"> <%= link_to "Open Comparison", comparison_path(comparison)%></i>
-              <i class="fas fa-share-alt" style="color: white;"></i>
+              <i class="board-card-right" style="margin-bottom:10px;"> <%= link_to "Open Comparison", comparison_path(comparison)%></i>
+              <i class="fas fa-share-alt" style="color: white; margin-right: 0px; margin-top: 20px;"></i>
             </div>
         </div>
         <div class="row">

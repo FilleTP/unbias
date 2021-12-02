@@ -868,5 +868,7 @@ class Article < ApplicationRecord
               toi
               spn
               psn
-              youre).join(" ")
+              youre
+              -
+              --).join(" ")
 end
