@@ -2,8 +2,8 @@
   <div class="maxi-search-bar-home maxi-choose-bias-form absolute-form javi">
 
     <%= simple_form_for @comparison do |f| %>
-      <%= f.input :publisher_one, collection: @sources, :include_blank => "", selected: 1, label: false %>
-      <%= f.input :publisher_two, collection: @sources, :include_blank => "", selected: 1, label: false %>
+      <%= f.input :publisher_one, label: false %>
+      <%= f.input :publisher_two, label: false %>
       <%= f.button :submit, 'Show', class: "button-white"%>
     <% end %>
   </div>

@@ -3,10 +3,15 @@
 <% comparison = locals[:comparison]  %>
 
 <div class="comparison-container">
-  <h1>News comparison</h1>
+  <h1> <%= comparison.topic.upcase %></h1>
   <div class="articles-compare-container">
     <div class=articles-left>
-      <h2 class="header" id="myHeader"> <%= articles_one.last["source"].capitalize unless (articles_one.empty? || articles_one.nil? ) %> </h2>
+      <div class="comparison-header">
+          <h2 class="header" id="myHeader"> <%= articles_one.last["source"].upcase unless (articles_one.empty? || articles_one.nil? ) %> </h2>
+          <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
+            <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span >ADD ARTICLE</span></i></span>
+          <% end %>
+      </div>
       <!-- <div class="articles-card-container">
         <div id="my_canvas" data-words="<%= @words_one %> "style='height: 268px; width: 733px; border-radius: 8px;'></div>
       </div> -->
@@ -42,13 +47,15 @@
           </div>
         <% end %>
       <% end %>
-      <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
-        <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span>Add article</span></i></span>
-      <% end %>
     </div>
 
     <div class="articles-right">
-      <h2 class="header" id="myHeader"> <%= articles_two.last["source"].capitalize  unless articles_one.empty? %> </h2>
+      <div class="comparison-header">
+        <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
+          <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span >ADD ARTICLE</span></i></span>
+        <% end %>
+        <h2 class="header" id="myHeader"> <%= articles_two.last["source"].upcase unless (articles_one.empty? || articles_one.nil? ) %> </h2>
+      </div>
       <!--<div class="articles-card-container">
         <div id="my_canvas" data-words="<%= @words_two %>  "style='height: 268px; width: 268px; border-radius: 8px;'></div>
       </div> -->
@@ -84,12 +91,11 @@
           </div>
         <% end %>
       <% end %>
-      <%= link_to comparison_add_article_two_path(comparison), class: "maxi-add-article-button" do %>
-        <span><i class="fas fa-plus-circle"> <span>Add article</span></i></span>
-      <% end %>
+    </div>
+  </div>
+  <div class="bottom" style="background-color: black; height: 50px; position: reletive;">
+    <div class="save">
+      <%= link_to 'Save Comparison', comparison_create_entries_path(comparison), method: :post, class: "button-white" %>
     </div>
   </div>
 </div>
-  <div class="save">
-    <%= link_to 'Save', comparison_create_entries_path(comparison), method: :post, class: "button-white", id: "fixedbutton" %>
-  </div>

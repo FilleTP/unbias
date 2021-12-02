@@ -3,7 +3,7 @@ import WordCloud from 'wordcloud'
 
 const initWordCloud = (canvas) => {
   const list = JSON.parse(canvas.dataset.words)
-  console.log(list)
+
   WordCloud(canvas, { list: list,
                       fontFamily: 'Montserrat, monospace',
                       backgroundColor: 'black',

@@ -12,7 +12,7 @@ const initMapbox = () => {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/jsuay/ckwgaz6fn05aj14lhe45rxbck',
-      center: [10.673147, 30.599413],
+      center: [40.673147, 30.599413],
       zoom: 1.3,
     });
 
@@ -41,7 +41,6 @@ const addMarkersToMap = (map, markers) => {
       const popupElement = popup.getElement();
 
       const canvas = popupElement.querySelector('.word-cloud-canvas')
-      console.log(canvas);
       initWordCloud(canvas)
       const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
       pop.style.maxWidth = "900px";
@@ -51,40 +50,30 @@ const addMarkersToMap = (map, markers) => {
       // const pubOne =
       // const pubTwo =
 
-      // add button
-      const btnAdd = popupElement.getElementById('popup-header');
-      // input publisher one
-      const optOne = document.getElementById('comparison_publisher_one').getElementsByTagName('option');
-      console.log(Object.entries(optOne), optOne[1]);
-      const optTwo = document.getElementById('comparison_publisher_two').getElementsByTagName('option')
 
-      optOne.forEach(element => console.log(element.innerHTML));
+      // add button in markers
+      const btnAdd = popupElement.querySelector('.input-map-add');
+      // input publisher one
+      const optOne = document.getElementById('comparison_publisher_one');
+
+      const optTwo = document.getElementById('comparison_publisher_two')
+
+
       btnAdd.addEventListener("click", (event) => {
         event.preventDefault()
+        const sourceName = document.getElementById('popup-header').innerText
 
-        const sourceName = document.querySelector('.source-name-hidden').innerText
 
-        const arr = []
-        console.log(optOne[1].innerHTML);
-        let index = parseInt(arr.indexOf(sourceName)) + 1
+        if (optOne.value == "") {
+          optOne.value = sourceName
+          console.log(optTwo.value);
+        } else if (optOne.value != "" && optTwo.value == "") {
+          optTwo.value = sourceName
+          console.log(optTwo.value);
 
-        if (optOne[0].selected) {
-          const optOne = document.getElementById('comparison_publisher_one').getElementsByTagName('option')
-          console.log(optOne);
-          // optOne.outerText = sourceName
-          optOne[index].selected = 'selected'
-          console.log(index);
-
-        } else {
-          const optTwo = document.getElementById('comparison_publisher_two').getElementsByTagName('option')
-          optTwo[index].selected = 'selected'
         }
       });
-      // const canvas = popupElement.querySelector('.word-cloud-canvas')
-      //console.log(canvas);
-     // initWordCloud(canvas)
-     // const pop = document.querySelector('.mapboxgl-popup.mapboxgl-popup-anchor-top')
-    //  pop.style.maxWidth = "900px";
+
 
     });
 
