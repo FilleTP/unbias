@@ -1,5 +1,5 @@
 .board-card {
-  background-color: white;
+  background-color:$black;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 8px;
@@ -7,9 +7,8 @@
 
 #board-card-container {
   margin: 0 auto;
-  padding-left: 70px;
-  padding-right: 50px;
   padding-top: 30px;
+  width: 1100px;
 
 }
 .board-card-right a {
@@ -50,6 +49,7 @@
 
 #share-icon {
   filter: invert(100%);
+  background-color: white;
 }
 
 .fa-window-close{
@@ -66,8 +66,8 @@
 }
 
 .logos-comparison {
-  margin: 0 auto;
-  margin-top: 30px;
+
+  margin-top: 33px;
 }
 
 .sentiment-comparison-one {
@@ -93,6 +93,6 @@
 
 }
 
-.stats {
-  display: none;
-}
+// .stats {
+//   display: none;
+// }
