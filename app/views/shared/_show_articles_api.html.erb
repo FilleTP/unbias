@@ -14,9 +14,9 @@
               elsif articles_one.first["source"].upcase.start_with?('CNN')
                 "CNN"
               elsif articles_one.first["source"].upcase == ('EN')
-                "Sputnik"
+                "SPUTNIK"
               elsif articles_one.first["source"].upcase.start_with?('FOX')
-                "FOX News"
+                "FOX NEWS"
               else
                 articles_one.first["source"].upcase
               end
@@ -56,7 +56,11 @@
                 </div>
               </div>
               <div class="article-author-sentiment">
-                <p class="author"><%= article["source"] %> </p>
+                <p class="author"><%= if article["source"].upcase == ('EN')
+                                        "Sputnik"
+                                      else
+                                        article["source"]
+                                      end  %> </p>
                 <p class="sentiment">Tone: <%= article["sentiment_description_string"] %> </p>
               </div>
             </div>
@@ -77,9 +81,9 @@
           elsif articles_two.first["source"].upcase.start_with?('CNN')
             "CNN"
           elsif articles_two.first["source"].upcase == ('EN')
-            "Sputnik"
+            "SPUTNIK"
           elsif articles_two.first["source"].upcase.start_with?('FOX')
-            "FOX News"
+            "FOX NEWS"
           else
             articles_two.first["source"].upcase
            end
@@ -109,7 +113,11 @@
                 </div>
               </div>
               <div class="article-author-sentiment">
-                <p class="author"><%= article["source"] %> </p>
+                <p class="author"><%= if article["source"].upcase == ('EN')
+                                        "Sputnik"
+                                      else
+                                        article["source"]
+                                      end  %></p>
                 <p class="sentiment">Tone: <%= article["sentiment_description_string"] %> </p>
               </div>
             </div>
