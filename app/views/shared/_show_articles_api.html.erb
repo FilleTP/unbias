@@ -14,9 +14,9 @@
               elsif articles_one.first["source"].upcase.start_with?('CNN')
                 "CNN"
               elsif articles_one.first["source"].upcase == ('EN')
-                "Sputnik"
+                "SPUTNIK"
               elsif articles_one.first["source"].upcase.start_with?('FOX')
-                "FOX News"
+                "FOX NEWS"
               else
                 articles_one.first["source"].upcase
               end
@@ -42,20 +42,26 @@
               <% end %>
             </div>
             <div class="article-card-text">
-              <div class="articles-card-date-cat">
-                <p><%= article["category"].upcase %> </p>
-                <%= article["published_at"].first(10) %>
-                <%= link_to comparison_remove_article_one_path(@comparison, article), class: "maxi-remove-article-button" do %>
-                <i class="far fa-window-close"></i>
-                <% end %>
-              </div>
-              <div class="article-card-info">
-                <h5 class="info-title"><%= article["title"] %> </h5>
-                <p class="info-description"><%= article["description"] %> </p>
+              <div>
+                <div class="articles-card-date-cat">
+                  <p><%= article["category"].upcase %> </p>
+                  <%= article["published_at"].first(10) %>
+                  <%= link_to comparison_remove_article_one_path(@comparison, article), class: "maxi-remove-article-button" do %>
+                  <i class="far fa-window-close"></i>
+                  <% end %>
+                </div>
+                <div class="article-card-info">
+                  <h5 class="info-title"><%= article["title"] %> </h5>
+                  <p class="info-description"><%= article["description"] %> </p>
+                </div>
               </div>
               <div class="article-author-sentiment">
-                <p class="author">Source: <%= article["source"] %> </p>
-                <p class="sentiment">Sentiment: <%= article["sentiment_description_string"] %> </p>
+                <p class="author"><%= if article["source"].upcase == ('EN')
+                                        "Sputnik"
+                                      else
+                                        article["source"]
+                                      end  %> </p>
+                <p class="sentiment">Tone: <%= article["sentiment_description_string"] %> </p>
               </div>
             </div>
           </div>
@@ -65,7 +71,7 @@
 
     <div class="articles-right">
       <div class="comparison-header">
-        <%= link_to comparison_add_article_one_path(comparison), class: "maxi-add-article-button" do %>
+        <%= link_to comparison_add_article_two_path(comparison), class: "maxi-add-article-button" do %>
           <span style="float: right; direction:rtl"><i class="fas fa-plus-circle"> <span >ADD ARTICLE</span></i></span>
         <% end %>
         <h2 class="header" id="myHeader">
@@ -75,9 +81,9 @@
           elsif articles_two.first["source"].upcase.start_with?('CNN')
             "CNN"
           elsif articles_two.first["source"].upcase == ('EN')
-            "Sputnik"
+            "SPUTNIK"
           elsif articles_two.first["source"].upcase.start_with?('FOX')
-            "FOX News"
+            "FOX NEWS"
           else
             articles_two.first["source"].upcase
            end
@@ -93,20 +99,26 @@
         <% else %>
           <div class="articles-card-container">
             <div class="article-card-text">
-              <div class="articles-card-date-cat">
-                <p><%= article["category"].upcase %> </p>
-                <%= article["published_at"].first(10) %>
-                <%= link_to comparison_remove_article_two_path(@comparison, article), class: "maxi-remove-article-button" do %>
-                <i class="far fa-window-close"></i>
-                <% end %>
-              </div>
-              <div class="article-card-info">
-                <h5 class="info-title"><%= article["title"] %> </h5>
-                <p class="info-description"><%= article["description"] %> </p>
+              <div>
+                <div class="articles-card-date-cat">
+                  <p><%= article["category"].upcase %> </p>
+                  <%= article["published_at"].first(10) %>
+                  <%= link_to comparison_remove_article_two_path(@comparison, article), class: "maxi-remove-article-button" do %>
+                  <i class="far fa-window-close"></i>
+                  <% end %>
+                </div>
+                <div class="article-card-info">
+                  <h5 class="info-title"><%= article["title"] %> </h5>
+                  <p class="info-description"><%= article["description"] %> </p>
+                </div>
               </div>
               <div class="article-author-sentiment">
-                <p class="author">Source: <%= article["source"] %> </p>
-                <p class="sentiment">Sentiment: <%= article["sentiment_description_string"] %> </p>
+                <p class="author"><%= if article["source"].upcase == ('EN')
+                                        "Sputnik"
+                                      else
+                                        article["source"]
+                                      end  %></p>
+                <p class="sentiment">Tone: <%= article["sentiment_description_string"] %> </p>
               </div>
             </div>
             <div class="articles-card-image">
@@ -123,7 +135,11 @@
   </div>
   <div class="bottom" style="background-color: black; height: 50px; position: reletive;">
     <div class="save">
-      <%= link_to 'Save Comparison', comparison_create_entries_path(comparison), method: :post, class: "button-primary" %>
+      <% if current_user %>
+        <%= link_to 'Save Comparison', comparison_create_entries_path(comparison), method: :post, class: "button-primary" %>
+      <% else %>
+        <%= link_to "login", new_user_session_path, class: "button-primary"  %>
+      <% end %>
     </div>
   </div>
 </div>
