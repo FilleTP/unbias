@@ -49,7 +49,7 @@ const addMarkersToMap = (map, markers) => {
     element.className = 'marker';
     element.style.backgroundImage = `url('${marker.image_url}')`;
     element.style.backgroundRepeat = 'no-repeat';
-    element.style.borderRadius = '50%';
+    element.style.borderRadius = '50px';
     element.style.backgroundColor = 'white';
     element.style.backgroundSize = 'contain';
     element.style.width = '50px';

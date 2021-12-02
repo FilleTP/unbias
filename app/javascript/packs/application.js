@@ -36,11 +36,34 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initMapbox();
   initFlatpickr();
+  hoverFunction();
+  hoverFunctionLeave();
   // initWordCloud();
 });
 
+const hover = document.querySelector(".board-card");
+const statsAffected = document.querySelector(".stats");
+// if (statsAffected.style.display === "none") {
+//   statsAffected.style.display = "block";
+// } else {
+//   statsAffected.style.display = "none";
+// }
 
+const hoverFunction = () => {
+hover.addEventListener("mouseenter", (event) => {
+  statsAffected.style.display = "block";
+});
+};
 
+const hoverFunctionLeave = () => {
+hover.addEventListener("mouseleave", (event) => {
+  statsAffected.style.display = "none";
+});
+};
+
+const fadeIn = (statsAffected) => {
+  statsAffected.style.opacity += "0.1";
+};
 // const removeButtons = document.querySelectorAll(".maxi-remove-article-button")
 
 // removeButtons.forEach((button) => {
