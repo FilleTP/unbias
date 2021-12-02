@@ -7,7 +7,6 @@
 .articles-compare-container {
   display: flex;
   justify-content: center;
-  margin: 25px;
   padding-bottom: 70px;
 }
 
@@ -132,7 +131,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 378px;
+  width: 378px;
 }
 
 .article-author-sentiment {
