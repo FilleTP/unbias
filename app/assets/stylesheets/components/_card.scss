@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   margin: 25px;
+  padding-bottom: 70px;
 }
 
 .articles-left {
@@ -46,7 +47,7 @@
 
 .articles-card-container {
   width: auto;
-  height: 268px;
+  height: 300px;
   display: flex;
   justify-content: space-between;
   margin-top: 25px;
@@ -60,7 +61,7 @@
 
 .articles-card-date-cat {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-left: 15px;
   margin-right: 15px;
   margin-top: 15px;
@@ -73,7 +74,7 @@
 .article-card-info {
   margin-left: 15px;
   margin-right: 15px;
-  margin-top: 15px;
+  margin-top: 5px;
   h5 {
     font-size: 19px;
   }
@@ -128,10 +129,13 @@
 
 .article-card-text {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 378px;
 }
 
 .article-author-sentiment {
-  display: flex;
   justify-content: space-between;
   margin-left: 15px;
   margin-right: 15px;
@@ -139,15 +143,10 @@
     // bottom: 0;
   .author {
     border-top: 1px grey solid;
-    position: absolute;
-    bottom: 0;
-    left: 15px;
+    margin-bottom: 5px !important;
   }
   .sentiment {
-    border-top: 1px grey solid;
-    position: absolute;
-    bottom: 0;
-    right: 15px;
+
   }
 }
 

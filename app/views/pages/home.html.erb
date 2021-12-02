@@ -4,21 +4,24 @@
       <source src="https://res.cloudinary.com/dci3qkzfc/video/upload/v1637678452/development/production_ID_4765224_irpyr6.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <div class="text-container">
-      <h1>Unbias Global</h1>
-      <p id="sub-header-home">Discover news biases around the world</p>
-    <%# <div class="maxi-search-bar-home"> %>
-    </div>
-    <div>
-      <%= simple_form_for @comparison do |f| %>
-        <%= f.input :topic, placeholder: "What to search for?", label: false %>
-        <%= f.input :end_date, as: :string, html5: true, input_html: {class: "datepicker"}, placeholder: "From*", label: false  %>
-        <%= f.input :start_date, as: :string, html5: true, input_html: {class: "datepicker"}, placeholder: "To*", label: false %>
-        <%= f.button :button, class: "button-primary" do %>
-          Search
-          <!--<i class="fas fa-search"></i>-->
+    <div class="my-container">
+
+      <div class="text-container">
+        <h1>Un<span class="main-color-text">bias</span> Global</h1>
+        <p id="sub-header-home">Discover news biases around the world</p>
+      <%# <div class="maxi-search-bar-home"> %>
+      </div>
+      <div>
+        <%= simple_form_for @comparison do |f| %>
+          <%= f.input :topic, placeholder: "What to search for?", label: false %>
+          <%= f.input :end_date, as: :string, html5: true, input_html: {class: "datepicker"}, placeholder: "From*", label: false  %>
+          <%= f.input :start_date, as: :string, html5: true, input_html: {class: "datepicker"}, placeholder: "To*", label: false %>
+          <%= f.button :button, class: "button-primary" do %>
+            Search
+            <!--<i class="fas fa-search"></i>-->
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
